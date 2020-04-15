@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <y-button type = "primary">基本按钮</y-button>
+    <y-button type = "info">信息按钮</y-button>
+    <y-button type = "success">成功按钮</y-button>
+    <y-button type = "warning">警告按钮</y-button>
+    <y-button type = "danger">危险按钮</y-button>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
   components: {
-    HelloWorld
   }
 }
 </script>
