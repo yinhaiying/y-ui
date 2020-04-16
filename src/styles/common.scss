@@ -18,6 +18,29 @@ $success-active: #5daf34;
 $warning-active: #cf9236;
 $danger-active: #dd6161;
 $info-active: #82848a;
+
+$default-disabled-bgcolor:#fff;
+$primary-disabled-bgcolor:#ecf5ff;
+$success-disabled-bgcolor:#f0f9eb;
+$warning-disabled-bgcolor:#fdf6ec;
+$danger-disabled-bgcolor:#fef0f0;
+$info-disabled-bgcolor:#f4f4f5;
+
+$default-disabled-bordercolor:#ebeef5;
+$primary-disabled-bordercolor:#d9ecff;
+$success-disabled-bordercolor:#e1f3d8;
+$warning-disabled-bordercolor:#faecd8;
+$danger-disabled-bordercolor:#fde2e2;
+$info-disabled-bordercolor:#e9e9eb;
+
+$default-disabled-color:#c0c4cc;
+$primary-disabled-color:#8cc5ff;
+$success-disabled-color:#a4da89;
+$warning-disabled-color:#f0c78a;
+$danger-disabled-color:#f9a7a7;
+$info-disabled-color:#bcbec2;
+
+
 * {
   padding: 0;
   margin: 0;

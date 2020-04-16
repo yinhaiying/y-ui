@@ -1,5 +1,5 @@
 <template>
-  <button class = "y-button" :class = "btnClass">
+  <button class = "y-button" :class = "btnClass" disabled>
     <span v-if = "this.$slots.default">
       <slot></slot>
     </span>
@@ -19,6 +19,14 @@ export default {
         };
         return true;
       }
+    },
+    disabled:{
+      type:Boolean,
+      default:false
+    },
+    round:{
+      type:Boolean,
+      default:false
     }
   },
   computed:{
@@ -26,6 +34,14 @@ export default {
       let classes = [];
       if(this.type){
         classes.push('y-button-'+this.type)
+      }else{
+       classes.push('y-button-default');
+      }
+      if(this.disabled){
+        classes.push('is-disabled');
+      }
+      if(this.round){
+        classes.push('is-round');
       }
       return classes;
     }
@@ -65,6 +81,7 @@ $active-color: #3a8ee6;
        background-color:$background;
        outline:none
   };
+  $type-list:default,primary,success,info,warning,danger;
   @each $type,$color in(
        primary:$primary,
        success:$success,
@@ -106,31 +123,28 @@ $active-color: #3a8ee6;
        &-#{$type}:focus{
            background:#{$color};
            border:1px solid #{$color};
-           color:#fff;
-           fill:#fff
+           fill:#fff;
        }
   }
-}
-
-@each $type,$color in(
-    primary:$primary,
-    info:$info,
-    success:$info,
-    warning:$info,
-    error:$info){
-      y-button-#{$type}{
-          background:#{$color};
-          border:1px solid #{$color};
-          color:#fff;
-          fill:#fff;
-      }
-}
-@each $type,$color in (
-    primary:'green-focue',
-    success:'red'
-){
-  y-ui-#{$type}:focus{
-    background:'#3c3c3c';
+  $disable-bgcolor:$default-disabled-bgcolor,$primary-disabled-bgcolor,$success-disabled-bgcolor,$info-disabled-bgcolor,$warning-disabled-bgcolor,$danger-disabled-bgcolor;
+  $disable-bordercolor:$default-disabled-bordercolor,$primary-disabled-bordercolor,$success-disabled-bordercolor,$info-disabled-bordercolor,$warning-disabled-bordercolor,$danger-disabled-bordercolor;
+  $disable-color:$default-disabled-color,$primary-disabled-color,$success-disabled-color,$info-disabled-color,$warning-disabled-color,$danger-disabled-color;
+  @each $type in $type-list{
+    $i:index($type-list,$type);
+    &-#{$type}.is-disabled,&-#{$type}.is-disabled:active,&-#{$type}.is-disabled:hover{
+      color: #fff;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: nth($disable-bgcolor,$i);
+      border-color: nth($disable-bordercolor,$i);;
+      color: nth($disable-color,$i);;
+    }
+  }
+  @each $type in $type-list{
+    $i:index($type-list,$type);
+    &-#{$type}.is-round{
+      border-radius:20px;
+    }
   }
 }
 </style>
