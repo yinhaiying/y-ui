@@ -37,12 +37,21 @@
       <y-button type = "danger" round icon = "error">危险按钮</y-button>
       <y-button type = "danger" round icon = "loading">加载中</y-button>
     </div>
+    <div>
+      <h3>点击事件</h3>
+      <y-button type = "primary" round icon = "settings"  @click="onClick">点击事件</y-button>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: 'ButtonExample',
   components: {
+  },
+  methods:{
+    onClick(){
+     console.log('点击事件')
+    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <button class = "y-button" :class = "btnClass" disabled>
+  <button  class = "y-button" :class = "btnClass" :disabled = "disabled"  @click = "$emit('click',$event)">
     <y-icon :name = icon v-if = "icon && icon !== 'loading'"></y-icon>
     <y-icon :name = icon v-if = "icon && icon === 'loading'"></y-icon>
     <span v-if = "this.$slots.default">
@@ -133,6 +133,7 @@ $active-color: #3a8ee6;
   ){
        &-#{$type}:active,
        &-#{$type}:focus{
+           color:#fff;
            background:#{$color};
            border:1px solid #{$color};
            fill:#fff;

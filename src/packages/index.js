@@ -8,7 +8,6 @@ const components  = [
   Icon,
   ButtonGroup
 ];
-console.log(Button.name)
 const install = (Vue) => {
   // 把所有的组件设置程全局组件
   components.forEach((component) => {
