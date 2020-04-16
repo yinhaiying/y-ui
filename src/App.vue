@@ -1,14 +1,17 @@
 <template>
   <div id="app">
     <button-example></button-example>
+    <icon-example></icon-example>  
   </div>
 </template>
 <script>
 import ButtonExample from './example/button'
+import IconExample from './example/icon'
 export default {
   name: 'App',
   components: {
-    ButtonExample
+    ButtonExample,
+    IconExample
   }
 }
 </script>
