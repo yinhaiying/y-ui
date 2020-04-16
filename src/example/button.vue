@@ -41,6 +41,20 @@
       <h3>点击事件</h3>
       <y-button type = "primary" round icon = "settings"  @click="onClick">点击事件</y-button>
     </div>
+    <div>
+      <h3>按钮组</h3>
+      <y-button-group style = "margin-right:20px">
+        <y-button type = "primary" icon = "left"  @click="onClick">上一页</y-button>
+        <y-button type = "primary" icon = "right" icon-position = "right"  @click="onClick">下一页</y-button>
+      </y-button-group>
+
+      <y-button-group>
+        <y-button type = "primary" icon = "settings"  @click="onClick">111</y-button>
+        <y-button type = "primary" icon = "settings"  @click="onClick">222</y-button>
+        <y-button type = "primary" icon = "settings"  @click="onClick">333</y-button>
+      </y-button-group>
+
+    </div>
   </div>
 </template>
 <script>
