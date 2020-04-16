@@ -1,5 +1,7 @@
 <template>
   <button class = "y-button" :class = "btnClass" disabled>
+    <y-icon :name = icon v-if = "icon && icon !== 'loading'"></y-icon>
+    <y-icon :name = icon v-if = "icon && icon === 'loading'"></y-icon>
     <span v-if = "this.$slots.default">
       <slot></slot>
     </span>
@@ -27,6 +29,19 @@ export default {
     round:{
       type:Boolean,
       default:false
+    },
+    icon:{
+      type:String
+    },
+    iconPosition:{
+      type:String,
+      default:'left',
+      validator(value){
+        if(!['left','right'].includes(value)){
+          throw new Error('icon-position只能为left或者right')
+        };
+        return true;
+      }
     }
   },
   computed:{
@@ -37,12 +52,9 @@ export default {
       }else{
        classes.push('y-button-default');
       }
-      if(this.disabled){
-        classes.push('is-disabled');
-      }
-      if(this.round){
-        classes.push('is-round');
-      }
+      if(this.disabled){classes.push('is-disabled');}
+      if(this.round){classes.push('is-round');}
+      if(this.iconPosition){classes.push(`y-button-${this.iconPosition}`)}
       return classes;
     }
   }
@@ -144,6 +156,25 @@ $active-color: #3a8ee6;
     $i:index($type-list,$type);
     &-#{$type}.is-round{
       border-radius:20px;
+    }
+  }
+
+  &-left{
+    svg{
+      order:1;
+      margin-right:0.3em;
+    }
+    span{
+      order:2;
+    }
+  }
+  &-right{
+    svg{
+      order:2;
+      margin-left:0.3em;
+    }
+    span{
+      order:1;
     }
   }
 }

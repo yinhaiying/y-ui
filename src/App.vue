@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <button-example></button-example>
-    <icon-example></icon-example>  
+    <!-- <icon-example></icon-example>   -->
   </div>
 </template>
 <script>
