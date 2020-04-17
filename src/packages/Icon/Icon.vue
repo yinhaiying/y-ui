@@ -6,13 +6,15 @@
 
 
 <script>
-import "./icon.js";
 export default {
   name:'y-icon',
   props:{
     name:{
       type:String
     }
+  },
+  mounted(){
+    import('./icon.js').then(icon => {})
   }
 }
 </script>
