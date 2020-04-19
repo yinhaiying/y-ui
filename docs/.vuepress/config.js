@@ -1,4 +1,5 @@
 module.exports = {
+    base:'/y-ui/',
   title: 'y-ui', // 设置网站标题
   description: 'ui 库', //描述
   port: 1234, //端口
