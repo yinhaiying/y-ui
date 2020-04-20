@@ -20,7 +20,7 @@ function Message(options){
   };
   // 实例化继承得到的构造器，然后传入的参数options转化成data数据。
   instance = createInstance(options,id);
-  
+
   // 多个message放入一个数组队列中进行处理
   instances = multiInstance(instance);
 }
@@ -60,9 +60,9 @@ Message.close = function(id,userOnClose){
       }
       removedInstanceHeight = dom.offsetHeight;
       if(index === 0){
-        dom.style['top'] = parseInt(getComputedStyle(dom).top) - removedInstanceHeight - 20 - 16 + 'px';
+        dom.style['top'] =0;
       }
-      if(index === len -1){
+      if(index === len -1 && len > 1){
         dom.style['top'] = parseInt(getComputedStyle(dom).top) - removedInstanceHeight - 16 + 'px';
       }
       instances.splice(i, 1);

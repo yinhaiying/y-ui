@@ -43,15 +43,15 @@ export default {
       this.zIndex = -10000;
     },
     startTimer(){
-      if(this.duration > 0){
-        this.timer = setTimeout(() => {
-          if(!this.isClosed){
-            this.onClose();
-            this.zIndex = -10000;
-            this.visible = false;
-          }
-        },this.duration)
-      }
+      // if(this.duration > 0){
+      //   this.timer = setTimeout(() => {
+      //     if(!this.isClosed){
+      //       this.onClose();
+      //       this.zIndex = -10000;
+      //       this.visible = false;
+      //     }
+      //   },this.duration)
+      // }
     },
     clearTimer(){
       clearTimeout(this.timer);
@@ -93,6 +93,7 @@ $color:$success-color,$info-color,$warning-color,$error-color;
   font-size:16px;
   line-height: 1;
   padding:15px 15px 15px 20px;
+  box-sizing: border-box;
   min-width:380px;
   &-content{
     margin-left:5px;
