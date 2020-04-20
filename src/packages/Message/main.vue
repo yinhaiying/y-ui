@@ -21,7 +21,7 @@ export default {
       showClose:false,
       onClose:null,
       isClosed:false,
-      duration:0
+      duration:3000
     }
   },
   computed:{
@@ -47,6 +47,7 @@ export default {
         this.timer = setTimeout(() => {
           if(!this.isClosed){
             this.onClose();
+            this.zIndex = -10000;
             this.visible = false;
           }
         },this.duration)
