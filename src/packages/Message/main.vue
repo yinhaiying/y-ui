@@ -2,7 +2,7 @@
   <transition >
     <div class = "y-message" :style = "positionStyle" :class = "[`y-message-${type}`]">
       <y-icon name = "info"></y-icon>
-      <p>{{message}}</p>
+      <p class= "y-message-content">{{message}}</p>
     </div>
   </transition>
 </template>
@@ -13,7 +13,6 @@ export default {
   data(){
     return {
       verticalOffset:20,
-      type:'info'
     }
   },
   computed:{
@@ -27,6 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../styles/common.scss";
 $success-bgColor:#f0f9eb;
 $success-borderColor:#e1f3d8;
 $success-color:#67C23A;
@@ -50,6 +50,13 @@ $color:$success-color,$info-color,$warning-color,$error-color;
   transform:translateX(-50%) translateY(-100%);
   align-items:center;
   transition:opacity .3s,top 1s;
+  font-size:16px;
+  line-height: 1;
+  padding:15px 15px 15px 20px;
+  min-width:380px;
+  &-content{
+    margin-left:5px;
+  }
   @each $type in $type-list{
   $i:index($type-list,$type);
     &-#{$type}{

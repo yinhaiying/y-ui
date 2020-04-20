@@ -5,10 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test": "karma start",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "test": "karma start"
   },
   "dependencies": {
     "core-js": "^3.6.4",
@@ -25,13 +24,19 @@
     "jasmine-core": "^3.5.0",
     "karma": "^5.0.2",
     "karma-chai": "^0.1.0",
+    "karma-chai-spies": "^0.1.4",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^3.1.1",
     "karma-mocha": "^2.0.0",
+    "karma-sinon-chai": "^2.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "^0.0.32",
+    "karma-webpack": "^4.0.2",
     "mocha": "^7.1.1",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0",
     "vue-template-compiler": "^2.6.11",
     "vue-test-utils": "^1.0.0-beta.11"
   },
@@ -39,5 +44,10 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

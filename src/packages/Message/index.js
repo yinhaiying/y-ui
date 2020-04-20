@@ -11,7 +11,7 @@ function Message(options){
       message:options
     };
     options = Object.assign({
-      type:'success',
+      type:'info',
       message:''
     },options)
   };
