@@ -3,6 +3,7 @@ import Main from './main.vue';
 // 通过继承得到一个Vue对象
 let MessageConstructor = Vue.extend(Main);
 let instance;
+let instances = [];  // 如果创建多个instance,分别形成队列
 
 function Message(options){
   if(typeof options === 'string'){
@@ -20,9 +21,14 @@ function Message(options){
   });
   instance.$mount();
   document.body.appendChild(instance.$el);
+  let verticalOffset = options.offset || 20;
+  instances.push(instance);
+  instances.forEach((item) => {
+    verticalOffset += item.$el.offsetHeight + 16;
+    item.verticalOffset = verticalOffset;
+  })
   console.log(instance);
-
-
 }
+
 
 export default Message;

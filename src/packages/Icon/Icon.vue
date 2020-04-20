@@ -1,5 +1,5 @@
 <template>
-   <svg class="icon" :class = "[name == 'loading' ? 'icon-loading':'']" aria-hidden="true">
+   <svg class="icon" :class = "[name == 'loading' ? 'icon-loading':'']" aria-hidden="false">
      <use :xlink:href="`#i-${name}`"></use>
    </svg>
 </template>
