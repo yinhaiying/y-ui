@@ -1,8 +1,9 @@
 <template>
-  <transition >
-    <div class = "y-message" :style = "positionStyle" :class = "[`y-message-${type}`]">
+  <transition name = "y-message-fade" @after-leave="handleAfterLeave">
+    <div v-show = "visible" class = "y-message" :style = "positionStyle" :class = "[`y-message-${type}`,showClose ? 'is-closable' : '']">
       <y-icon name = "info"></y-icon>
       <p class= "y-message-content">{{message}}</p>
+      <span @click = "close" v-if = "showClose" class = "y-message-close"><y-icon name = "close"></y-icon></span>
     </div>
   </transition>
 </template>
@@ -12,14 +13,52 @@ export default {
   name:'y-message',
   data(){
     return {
+      visible:false,
       verticalOffset:20,
+      zIndex:10000,
+      type:'info',
+      message:'',
+      showClose:false,
+      onClose:null,
+      isClosed:false,
+      duration:0
     }
   },
   computed:{
     positionStyle(){
       return {
-        'top':`${this.verticalOffset}px`
+        'top':`${this.verticalOffset}px`,
+        'z-index':`${this.zIndex}`
       }
+    }
+  },
+  mounted(){
+    this.startTimer();
+  },
+  methods:{
+    close(event){
+      this.isClosed = true;
+      this.visible = false;
+      this.onClose();
+      this.zIndex = -10000;
+    },
+    startTimer(){
+      if(this.duration > 0){
+        this.timer = setTimeout(() => {
+          if(!this.isClosed){
+            this.onClose();
+            this.visible = false;
+          }
+        },this.duration)
+      }
+    },
+    clearTimer(){
+      clearTimeout(this.timer);
+    },
+    handleAfterLeave(el,done){
+      this.$destroy();
+      this.$el.parentNode.removeChild(this.$el);
+      this.clearTimer();
     }
   }
 }
@@ -58,16 +97,33 @@ $color:$success-color,$info-color,$warning-color,$error-color;
     margin-left:5px;
   }
   @each $type in $type-list{
-  $i:index($type-list,$type);
+    $i:index($type-list,$type);
     &-#{$type}{
       color: #fff;
-      cursor: not-allowed;
       background-image: none;
       background-color: nth($bgcolor,$i);
       border-color: nth($bordercolor,$i);;
       color: nth($color,$i);;
     }
  }
+ &-close{
+   position:absolute;
+   top:50%;
+   right:15px;
+   transform:translateY(-50%);
+   cursor:pointer;
+   color:#C0C4CC;
+   font-size:16px
+ }
+ &.is-closable{
+   top:-20px;
+ }
 }
+
+// .y-message-fade-enter,.y-message-fade-leave-active{
+//   opacity:0;
+//   -webkit-transform:translate(-50%,-100%);
+//   transform:translate(-50%,-100%)
+// }
 
 </style>
