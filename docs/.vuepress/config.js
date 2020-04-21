@@ -1,5 +1,5 @@
 module.exports = {
-    base:'/y-ui/',
+  base:'/y-ui/',
   title: 'y-ui', // 设置网站标题
   description: 'ui 库', //描述
   port: 1234, //端口
@@ -12,9 +12,10 @@ module.exports = {
       // 为以下路由添加侧边栏
       sidebar: {
           '/components/': [{
-                  collapsable: true,
+                  collapsable: false,
                   children: [
-                      'button'
+                      'button',
+                      'message'
                   ]
               }
           ]
