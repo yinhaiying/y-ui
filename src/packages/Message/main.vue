@@ -1,6 +1,7 @@
 <template>
   <transition name = "y-message-fade" @after-leave="handleAfterLeave">
-    <div v-show = "visible" class = "y-message" :style = "positionStyle" :class = "[`y-message-${type}`,showClose ? 'is-closable' : '']">
+    <div v-show = "visible" class = "y-message" :style = "positionStyle"
+         :class = "[`y-message-${type}`,showClose ? 'is-closable' : '',center? 'is-center' : '']">
       <y-icon name = "info"></y-icon>
       <p class= "y-message-content">{{message}}</p>
       <span @click = "close" v-if = "showClose" class = "y-message-close"><y-icon name = "close"></y-icon></span>
@@ -21,7 +22,8 @@ export default {
       showClose:false,
       onClose:null,
       isClosed:false,
-      duration:3000
+      duration:3000,
+      center:false
     }
   },
   computed:{
@@ -120,12 +122,10 @@ $color:$success-color,$info-color,$warning-color,$error-color;
  &.is-closable{
    top:-20px;
  }
+ &.is-center{
+   justify-content: center;
+ }
 }
 
-// .y-message-fade-enter,.y-message-fade-leave-active{
-//   opacity:0;
-//   -webkit-transform:translate(-50%,-100%);
-//   transform:translate(-50%,-100%)
-// }
 
 </style>

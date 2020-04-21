@@ -19,7 +19,15 @@
       <y-button  @click = "open1" type = "success">成功</y-button>
       <y-button type = "warning" @click = "open2">警告</y-button>
       <y-button type = "info" @click = "open3">消息</y-button>
-      <y-button type = "danger" @click = "open4">错误</y-button> 
+      <y-button type = "danger" @click = "open4">错误</y-button>
+    </div>
+    <div>
+      <h2>文字居中</h2>
+      <p>实现消息文字居中</p>
+      <y-button  @click = "open1" type = "success">成功</y-button>
+      <y-button type = "warning" @click = "open2">警告</y-button>
+      <y-button type = "info" @click = "open3">消息</y-button>
+      <y-button type = "danger" @click = "open4">错误</y-button>
     </div>
   </div>
 </template>
@@ -57,7 +65,8 @@ export default {
       this.$message({
         message:'错了哦，这是一错误的消息',
         type:'error',
-        showClose:true
+        showClose:true,
+        center:true
       });
     }
   }
