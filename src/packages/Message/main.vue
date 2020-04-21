@@ -3,7 +3,8 @@
     <div v-show = "visible" class = "y-message" :style = "positionStyle"
          :class = "[`y-message-${type}`,showClose ? 'is-closable' : '',center? 'is-center' : '']">
       <y-icon name = "info"></y-icon>
-      <p class= "y-message-content">{{message}}</p>
+      <div class= "y-message-content" v-if = "!dangerouslyUseHTMLString">{{message}}</div>
+      <div class= "y-message-content" v-else v-html = "message"></div>
       <span @click = "close" v-if = "showClose" class = "y-message-close"><y-icon name = "close"></y-icon></span>
     </div>
   </transition>
@@ -23,7 +24,8 @@ export default {
       onClose:null,
       isClosed:false,
       duration:3000,
-      center:false
+      center:false,
+      dangerouslyUseHTMLString:false
     }
   },
   computed:{

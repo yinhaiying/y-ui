@@ -18,6 +18,9 @@ function Message(options){
   options.onClose = function() {
     Message.close(id,userOnClose);
   };
+  // if(options.dangerouslyUseHTMLString){
+
+  // }
   // 实例化继承得到的构造器，然后传入的参数options转化成data数据。
   instance = createInstance(options,id);
 

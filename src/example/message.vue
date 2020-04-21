@@ -29,6 +29,14 @@
       <y-button type = "info" @click = "open3">消息</y-button>
       <y-button type = "danger" @click = "open4">错误</y-button>
     </div>
+    <div>
+      <h2>使用HTML片段</h2>
+      <p>将dangerouslyUseHTMLString属性设置为 true，message 就会被当作 HTML 片段处理。</p>
+      <y-button  @click = "open1" type = "success">成功</y-button>
+      <y-button type = "warning" @click = "open2">警告</y-button>
+      <y-button type = "info" @click = "open3">消息</y-button>
+      <y-button type = "danger" @click = "open4">错误</y-button>
+    </div>
   </div>
 </template>
 
@@ -44,7 +52,6 @@ export default {
       this.$message({
         message:'恭喜你，这是一条成功的消息',
         type:'success',
-        showClose:true
       });
     },
     open2(){
@@ -58,15 +65,16 @@ export default {
       this.$message({
         message:'这是一条消息',
         type:'info',
-        showClose:true
+        showClose:true,
+        center:true
       });
     },
     open4(){
       this.$message({
-        message:'错了哦，这是一错误的消息',
+        message:'<div>价钱：<span>70元</span></div>',
         type:'error',
         showClose:true,
-        center:true
+        "dangerouslyUseHTMLString":true
       });
     }
   }
