@@ -47,15 +47,15 @@ export default {
       this.zIndex = -10000;
     },
     startTimer(){
-      // if(this.duration > 0){
-      //   this.timer = setTimeout(() => {
-      //     if(!this.isClosed){
-      //       this.onClose();
-      //       this.zIndex = -10000;
-      //       this.visible = false;
-      //     }
-      //   },this.duration)
-      // }
+      if(this.duration > 0){
+        this.timer = setTimeout(() => {
+          if(!this.isClosed){
+            this.onClose();
+            this.zIndex = -10000;
+            this.visible = false;
+          }
+        },this.duration)
+      }
     },
     clearTimer(){
       clearTimeout(this.timer);

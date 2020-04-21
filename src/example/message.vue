@@ -74,7 +74,8 @@ export default {
         message:'<div>价钱：<span>70元</span></div>',
         type:'error',
         showClose:true,
-        "dangerouslyUseHTMLString":true
+        "dangerouslyUseHTMLString":true,
+        offset:40
       });
     }
   }
