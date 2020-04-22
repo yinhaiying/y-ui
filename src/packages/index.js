@@ -3,11 +3,21 @@ import Button from './Button/Button.vue'
 import Icon from './Icon/Icon.vue'
 import ButtonGroup from './Button/ButtonGroup.vue'
 import Message from './Message/index.js'
+import Tabs from './Tabs/tabs.vue'
+import TabsPane from './Tabs/tabs-pane.vue'
+import TabsContent from './Tabs/tabs-content.vue'
+import TabsNav from './Tabs/tabs-nav.vue'
+import TabsItem from './Tabs/tabs-item.vue'
 import Vue from 'vue'
 const components  = [
   Button,
   Icon,
   ButtonGroup,
+  Tabs,
+  TabsContent,
+  TabsPane,
+  TabsNav,
+  TabsItem
 ];
 const install = (Vue) => {
   // 把所有的组件设置程全局组件
