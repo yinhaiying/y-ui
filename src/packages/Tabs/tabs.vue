@@ -41,6 +41,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.y-tabs{
+  border:1px solid #ebebeb;
+}
 </style>

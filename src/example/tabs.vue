@@ -11,7 +11,7 @@
       </y-tabs-nav>
       <y-tabs-content>
         <y-tabs-pane label = "用户管理" name = "first">用户管理</y-tabs-pane>
-        <y-tabs-pane label="用户管理" name = "secode">用户管理</y-tabs-pane>
+        <y-tabs-pane label="配置管理" name = "secode">配置管理</y-tabs-pane>
         <y-tabs-pane label="角色管理" name = "third">角色管理</y-tabs-pane>
         <y-tabs-pane label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-pane>
       </y-tabs-content>

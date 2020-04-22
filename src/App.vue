@@ -24,11 +24,12 @@ export default {
 
 <style lang="scss">
 #app {
+  width:800px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 160px;
-  margin-left:500px;
+  margin-left:300px;
 }
 </style>

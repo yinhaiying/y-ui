@@ -43,8 +43,9 @@ export default {
 .y-tabs-item{
   flex-shrink: 0;
   padding:0 2em;
+  cursor:pointer;
   &.is-active{
-    background:red;
+    color:#409eff;
   }
 }
 </style>

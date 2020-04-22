@@ -36,8 +36,9 @@ export default {
 
 <style lang="scss" scoped>
 .y-tabs-pane{
+  min-height:50px;
   &.is-active{
-    background:red;
+
   }
 }
 </style>
