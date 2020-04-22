@@ -9,12 +9,20 @@ export default {
   name:'y-tabs-nav',
   inject:['eventBus'],
   created(){
-    console.log('nav:eventBus');
-    console.log(this.eventBus)
+    this.eventBus.$on('update:selected',(name) => {
+      this.active = this.name === name;
+    })
   }
 }
 </script>
 
-<style>
-
+<style  scoped lang = "scss">
+$nav-height:40px;
+.y-tabs-nav{
+  display:flex;
+  height:$nav-height;
+  justify-content: flex-start;
+  align-items: center;
+  border:1px solid red;
+}
 </style>

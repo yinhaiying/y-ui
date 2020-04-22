@@ -9,8 +9,6 @@ export default {
   name:'y-tabs-content',
   inject:['eventBus'],
   created(){
-    console.log('nav:eventBus');
-    console.log(this.eventBus)
   }
 }
 </script>

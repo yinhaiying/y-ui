@@ -1,5 +1,5 @@
 <template>
-  <div class = "y-tabs-pane">
+  <div class = "y-tabs-pane" :class = "classes" v-if = "active">
     <slot></slot>
   </div>
 </template>
@@ -8,14 +8,36 @@
 export default {
   name:'y-tabs-pane',
   inject:['eventBus'],
+  data(){
+    return {
+      active:false
+    }
+  },
+  props:{
+    name:{
+      type:String,
+      required:true
+    }
+  },
   created(){
     this.eventBus.$on('update:selected',(name) => {
-      console.log('selected:' + name)
+      this.active = this.name === name;
     })
-  }
+  },
+  computed:{
+    classes(){
+      return {
+        "is-active":this.active
+      }
+    }
+  },
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.y-tabs-pane{
+  &.is-active{
+    background:red;
+  }
+}
 </style>

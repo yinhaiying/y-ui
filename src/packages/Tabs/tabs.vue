@@ -28,17 +28,15 @@ export default {
     return {
       eventBus:new Vue()
     }
-
   },
   provide(){
     return {
       eventBus:this.eventBus
     }
-
   },
-  created(){
-    console.log(this.eventBus)
-    // this.$emit('update:selected',$event)
+  mounted(){
+    // 初始化的时候必须在mounted里面执行。确保子组件中的$on监听都绑定上了。
+    this.eventBus.$emit('update:selected',this.selected)
   }
 }
 </script>
