@@ -98,6 +98,27 @@
       </y-tabs>
     </div>
 
+    <div class = "item">
+      <h2>附加内容</h2>
+      <y-tabs :selected.sync = "activeName">
+        <y-tabs-nav>
+          <y-tabs-item  name = "first" >用户管理</y-tabs-item>
+          <y-tabs-item  name = "secode" disabled >配置管理</y-tabs-item>
+          <y-tabs-item  name = "third">角色管理</y-tabs-item>
+          <y-tabs-item  name = "fourth">定时任务补偿</y-tabs-item>
+          <template slot = "extra">
+            <button style = "padding:2px">点击</button>
+          </template>
+        </y-tabs-nav>
+        <y-tabs-content>
+          <y-tabs-pane  name = "first">用户管理</y-tabs-pane>
+          <y-tabs-pane  name = "secode">配置管理</y-tabs-pane>
+          <y-tabs-pane  name = "third">角色管理</y-tabs-pane>
+          <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
+        </y-tabs-content>
+      </y-tabs>
+    </div>
+
   </div>
 </template>
 

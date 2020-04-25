@@ -2,6 +2,9 @@
   <div class = "y-tabs-nav" :class = "navClass">
     <div class="y-tabs__active-bar" :style = "barStyle" ></div>
     <slot></slot>
+    <div class = "y-tabs-nav__extra">
+      <slot name = "extra"></slot>
+    </div>
   </div>
 </template>
 
@@ -92,6 +95,13 @@ $nav-height:40px;
     z-index:2;
     transition:all 300ms;
     box-sizing: border-box;
+  }
+  &__extra{
+    margin-left:auto;
+    margin-right:10px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
   }
 }
 </style>
