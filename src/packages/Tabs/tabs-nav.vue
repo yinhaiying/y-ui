@@ -1,6 +1,6 @@
 <template>
-  <div class = "y-tabs-nav">
-    <div class="y-tabs__active-bar" :style = "barStyle"></div>
+  <div class = "y-tabs-nav" :class = "navClass">
+    <div class="y-tabs__active-bar" :style = "barStyle" ></div>
     <slot></slot>
   </div>
 </template>
@@ -8,7 +8,7 @@
 <script>
 export default {
   name:'y-tabs-nav',
-  inject:['eventBus'],
+  inject:['eventBus','type'],
   data(){
     return {
       offsetLeft:0,
@@ -30,7 +30,11 @@ export default {
         width:this.width + 'px',
         transform:`translateX(${this.offsetLeft}px)`
       }
-
+    },
+    navClass(){
+      return {
+        'y-tabs-nav--type':this.type
+      }
     }
   }
 }
@@ -44,6 +48,14 @@ $nav-height:40px;
   justify-content: flex-start;
   align-items: center;
   position:relative;
+  &--type{
+    & > .y-tabs__active-bar{
+      display:none;
+    }
+    &:after{
+      height:0 !important;
+    }
+  }
   &:after{
     content: "";
     position: absolute;

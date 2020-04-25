@@ -25,12 +25,12 @@ export default {
 <style lang="scss">
 @import "./styles/reset.scss";
 #app {
-  width:800px;
+  // width:800px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 160px;
-  margin-left:300px;
+  // margin-top: 160px;
+  margin-left:100px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class = "y-tabs">
+  <div class = "y-tabs" :class = "tabClass">
     <slot></slot>
   </div>
 </template>
@@ -22,6 +22,9 @@ export default {
         };
         return true;
       }
+    },
+    type:{
+      type:String
     }
   },
   data(){
@@ -31,7 +34,8 @@ export default {
   },
   provide(){
     return {
-      eventBus:this.eventBus
+      eventBus:this.eventBus,
+      type:this.type
     }
   },
   mounted(){
@@ -40,19 +44,34 @@ export default {
       if(vm.$options.name === 'y-tabs-nav'){
         vm.$children.forEach((child) => {
           if(child.$options.name === 'y-tabs-item' && child.name === this.selected ){
-            this.eventBus.$emit('update:selected',{name:this.selected,vm:child})
+            // eventBus是另外通过new Vue的可以生成用来通信的。但是无法在这个上面$emit然后进行接收。
+            this.eventBus.$emit('update:selected',{
+              name:this.selected,
+              vm:child,
+            });
           }
         })
       }
     })
-
+  },
+  created(){
+    // 这里监听事件是为了向外面暴漏click事件
+    this.eventBus.$on('update:selected',({name,vm}) => {
+      this.$emit('click',this)
+    });
+  },
+  computed:{
+    tabClass(){
+      return {
+        "y-tab--type":this.type
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .y-tabs{
-  border:1px solid #ebebeb;
-  // box-sizing: border-box;
+  // border:1px solid #ebebeb;
 }
 </style>
