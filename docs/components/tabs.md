@@ -1,9 +1,19 @@
+# Tabs组件
+Tabs组件用于实现内容切换
+## 基础用法
+基础的、简洁的标签页。
+
+<demo-block>
+::: slot source
+<tabs-example1></tabs-example1>
+:::
+
+Tabs 组件提供了选项卡功能，通过 selected 属性来指定当前选中的标签页。
+在选项卡导航部分和内容部分需要传入一一对应的name属性来分别指定当前选中状态和展示内容。
+::: slot highlight
+```html
 <template>
-  <div>
-    <!-- <y-tabs selected = "first" @update:selected="handleClick"> -->
-      <!-- 事件名字为update:xxx   xxx为定义的属性值 那么就可以直接使用.sync修饰符 -->
       <div class = "item">
-        <h2>简洁选项卡</h2>
         <y-tabs :selected = "activeName" @click = "handleClick">
           <y-tabs-nav>
             <y-tabs-item  name = "first">用户管理</y-tabs-item>
@@ -19,9 +29,40 @@
           </y-tabs-content>
         </y-tabs>
       </div>
+</template>
+<script>
+  export default {
+    name:'TabsExample',
+    data(){
+      return {
+        activeName:'first'
+      }
+    },
+    methods:{
+      handleClick(tab){
+        console.log(tab)
+      }
+    }
+  }
+</script>
 
-    <div class = "item">
-      <h2>标签选项卡</h2>
+```
+:::
+</demo-block>
+
+## 标签化选项卡
+可以通过指定type属性来设置选项卡样式
+
+<demo-block>
+::: slot source
+<tabs-example2></tabs-example2>
+:::
+
+只需要设置 type 属性为 card 就可以使选项卡改变为标签风格。
+::: slot highlight
+```html
+<template>
+      <div class = "item">
       <y-tabs :selected.sync = "activeName" type = "card">
         <y-tabs-nav>
           <y-tabs-item  name = "first">用户管理</y-tabs-item>
@@ -36,10 +77,35 @@
           <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
         </y-tabs-content>
       </y-tabs>
-    </div>
+      </div>
+</template>
+<script>
+  export default {
+    name:'TabsExample',
+    data(){
+      return {
+        activeName:'first'
+      }
+    },
+  }
+</script>
+```
+:::
+</demo-block>
 
-    <div class = "item">
-      <h2>卡片选项卡</h2>
+## 卡片化选项卡
+可以通过指定type属性来设置选项卡样式
+
+<demo-block>
+::: slot source
+<tabs-example3></tabs-example3>
+:::
+
+只需要设置 type 属性为 border-card 就可以使选项卡改变为卡片风格。
+::: slot highlight
+```html
+<template>
+      <div class = "item">
       <y-tabs :selected.sync = "activeName" type = "border-card">
         <y-tabs-nav>
           <y-tabs-item  name = "first">用户管理</y-tabs-item>
@@ -54,10 +120,35 @@
           <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
         </y-tabs-content>
       </y-tabs>
-    </div>
+      </div>
+</template>
+<script>
+  export default {
+    name:'TabsExample',
+    data(){
+      return {
+        activeName:'first'
+      }
+    }
+  }
+</script>
+```
+:::
+</demo-block>
 
-    <div class = "item">
-      <h2>自定义标签名称</h2>
+## 自定义选项卡
+选项卡导航栏可以进行自定义比如使用icon等。
+
+<demo-block>
+::: slot source
+<tabs-example4></tabs-example4>
+:::
+
+可以在y-tabs-item中使用Icon等进行自定义选项卡。
+::: slot highlight
+```html
+<template>
+      <div class = "item">
       <y-tabs :selected.sync = "activeName" type = "border-card">
         <y-tabs-nav>
           <y-tabs-item  name = "first">
@@ -77,9 +168,35 @@
           <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
         </y-tabs-content>
       </y-tabs>
-    </div>
-    <div class = "item">
-      <h2>禁用标签</h2>
+      </div>
+</template>
+<script>
+  export default {
+    name:'TabsExample',
+    data(){
+      return {
+        activeName:'first'
+      }
+    }
+  }
+</script>
+```
+:::
+</demo-block>
+
+## 禁用选项卡
+选项卡导航栏支持禁用。
+
+<demo-block>
+::: slot source
+<tabs-example5></tabs-example5>
+:::
+
+可以在y-tabs-item中使用disabled属性禁用选项卡。
+::: slot highlight
+```html
+<template>
+      <div class = "item">
       <y-tabs :selected.sync = "activeName">
         <y-tabs-nav>
           <y-tabs-item  name = "first" >用户管理</y-tabs-item>
@@ -94,10 +211,35 @@
           <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
         </y-tabs-content>
       </y-tabs>
-    </div>
+      </div>
+</template>
+<script>
+  export default {
+    name:'TabsExample',
+    data(){
+      return {
+        activeName:'first'
+      }
+    }
+  }
+</script>
+```
+:::
+</demo-block>
 
-    <div class = "item">
-      <h2>附加内容</h2>
+## 附加内容
+选项卡支持添加附加内容扩展功能。
+
+<demo-block>
+::: slot source
+<tabs-example6></tabs-example6>
+:::
+
+可以通过具名 slot 来实现选项卡添加附加内容
+::: slot highlight
+```html
+<template>
+      <div class = "item">
       <y-tabs :selected.sync = "activeName">
         <y-tabs-nav>
           <y-tabs-item  name = "first" >用户管理</y-tabs-item>
@@ -115,11 +257,8 @@
           <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
         </y-tabs-content>
       </y-tabs>
-    </div>
-
-  </div>
+      </div>
 </template>
-
 <script>
   export default {
     name:'TabsExample',
@@ -127,28 +266,35 @@
       return {
         activeName:'first'
       }
-    },
-    methods:{
-      handleClick(tab){
-        console.log(tab)
-      }
     }
-
   }
 </script>
+```
+:::
+</demo-block>
 
-<style lang="scss" scoped>
-.item{
-  margin:20px;
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  flex-direction: column;
-  // border:1px solid #ddd;
-  h2{
-    margin-bottom:20px;
-    font-size:16px;
-    font-weight: bold;
-  }
-}
-</style>
+
+## Tabs Attribute
+参数|说明|类型|可选值|默认值
+:-|:-|:-|:-|:-|:-
+selected|绑定值，选中选项卡的 name|String|-|-
+type|选项卡的类型|String| default / card / border-card |default
+
+## Tabs Event
+参数|说明|回调参数|
+:-|:-|:-|:-|:-|:-
+click|选项卡被点中时触发|被选中的标签 tab 实例
+
+
+## Tabs-Item Attribute
+参数|说明|类型|可选值|默认值
+:-|:-|:-|:-|:-|:-
+name|选项卡的 name|String|-|-
+diasbled|是否禁用|Boolean| true / false | false
+
+
+## Tabs-Pane Attribute
+参数|说明|类型|可选值|默认值
+:-|:-|:-|:-|:-|:-
+name|选项卡的 name|String|-|-
+

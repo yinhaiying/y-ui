@@ -11,13 +11,22 @@ module.exports = {
       ],
       // 为以下路由添加侧边栏
       sidebar: {
-          '/components/': [{
+          '/components/': [
+            {
+                  title:'基础组件',
                   collapsable: false,
                   children: [
                       'button',
                       'message'
                   ]
-              }
+            },
+            {
+                  title:'导航',
+                  collapsable: false,
+                  children: [
+                      'tabs',
+                  ]
+            }
           ]
       }
   }

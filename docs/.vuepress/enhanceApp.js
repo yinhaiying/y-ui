@@ -8,9 +8,21 @@ import 'highlight.js/styles/googlecode.css' //样式文件
 import Button from '../../src/packages/Button/Button.vue'
 import ButtonGroup from '../../src/packages/Button/ButtonGroup.vue'
 import Icon from '../../src/packages/Icon/Icon.vue'
+import Tabs from '../../src/packages/Tabs/tabs.vue'
+import TabsNav from '../../src/packages/Tabs/tabs-nav.vue'
+import TabsItem from '../../src/packages/Tabs/tabs-item.vue'
+import TabsContent from '../../src/packages/Tabs/tabs-content.vue'
+import TabsPane from '../../src/packages/Tabs/tabs-pane.vue'
 Vue.component(Button.name,Button)
 Vue.component(ButtonGroup.name,ButtonGroup)
-Vue.component(Icon.name,Icon)
+Vue.component(Icon.name,Icon);
+Vue.component(Tabs.name,Tabs);
+Vue.component(TabsNav.name,TabsNav);
+Vue.component(TabsItem.name,TabsItem);
+Vue.component(TabsContent.name,TabsContent);
+Vue.component(TabsPane.name,TabsPane);
+
+
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block)=>{
