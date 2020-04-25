@@ -12,12 +12,15 @@ export default {
   data(){
     return {
       offsetLeft:0,
-      width:0
+      width:0,
+      padding:{}
     }
   },
   mounted(){
     this.eventBus.$on('update:selected',({name,vm}) => {
-      this.width = vm.$el.getBoundingClientRect().width;
+      this.padding.paddingLeft =  parseInt(window.getComputedStyle(vm.$el).paddingLeft);
+      this.padding.paddingRight =  parseInt(window.getComputedStyle(vm.$el).paddingRight);
+      this.width = vm.$el.getBoundingClientRect().width - this.padding.paddingLeft - this.padding.paddingRight ;
       if(this.$parent.$options.name === 'y-tabs'){
         this.offsetLeft = vm.$el.getBoundingClientRect().left - this.$parent.$el.getBoundingClientRect().left;
       }
@@ -25,10 +28,11 @@ export default {
   },
   computed:{
     barStyle(){
-      console.log(this.width,this.offsetLeft)
       return {
         width:this.width + 'px',
-        transform:`translateX(${this.offsetLeft}px)`
+        transform:`translateX(${this.offsetLeft}px)`,
+        marginLeft:this.padding.paddingLeft + 'px',
+        marginRight:this.padding.paddingRight + 'px',
       }
     },
     navClass(){
@@ -87,6 +91,7 @@ $nav-height:40px;
     background-color:#409eff;
     z-index:2;
     transition:all 300ms;
+    box-sizing: border-box;
   }
 }
 </style>

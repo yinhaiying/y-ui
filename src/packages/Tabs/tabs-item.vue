@@ -1,5 +1,6 @@
 <template>
   <div class = "y-tabs-item" @click = "onClick" :class = "classes" ref = "tabsItem">
+    <slot name = "label"></slot>
     <slot></slot>
   </div>
 </template>
@@ -17,6 +18,10 @@ export default {
     name:{
       type:String,
       required:true
+    },
+    disabled:{
+      type:Boolean,
+      default:false
     }
   },
   created(){
@@ -27,17 +32,15 @@ export default {
   computed:{
     classes(){
       let classes = [];
-      if(this.type){
-        classes.push('y-tabs-item--' + this.type)
-      }
-      if(this.active){
-        classes.push("is-active")
-      }
+      if(this.type){ classes.push('y-tabs-item--' + this.type)}
+      if(this.active){classes.push("is-active")}
+      if(this.disabled){classes.push('is-disabled')}
       return classes;
     }
   },
   methods:{
     onClick(){
+      if(this.disabled)return;
       this.eventBus.$emit('update:selected',{name:this.name,vm:this});
     }
   }
@@ -77,7 +80,9 @@ export default {
     &.is-active{
     background:#fff;
     }
-
+  }
+  &.is-disabled{
+    color:rgba(0,0,0,.25);
   }
 }
 </style>

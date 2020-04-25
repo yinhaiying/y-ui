@@ -6,16 +6,16 @@
         <h2>简洁选项卡</h2>
         <y-tabs :selected = "activeName" @click = "handleClick">
           <y-tabs-nav>
-            <y-tabs-item label = "用户管理" name = "first">用户管理</y-tabs-item>
-            <y-tabs-item label="配置管理" name = "secode">配置管理</y-tabs-item>
-            <y-tabs-item label="角色管理" name = "third">角色管理</y-tabs-item>
-            <y-tabs-item label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-item>
+            <y-tabs-item  name = "first">用户管理</y-tabs-item>
+            <y-tabs-item  name = "secode">配置管理</y-tabs-item>
+            <y-tabs-item  name = "third">角色管理</y-tabs-item>
+            <y-tabs-item  name = "fourth">定时任务补偿</y-tabs-item>
           </y-tabs-nav>
           <y-tabs-content>
-            <y-tabs-pane label = "用户管理" name = "first">用户管理</y-tabs-pane>
-            <y-tabs-pane label="配置管理" name = "secode">配置管理</y-tabs-pane>
-            <y-tabs-pane label="角色管理" name = "third">角色管理</y-tabs-pane>
-            <y-tabs-pane label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-pane>
+            <y-tabs-pane  name = "first">用户管理</y-tabs-pane>
+            <y-tabs-pane  name = "secode">配置管理</y-tabs-pane>
+            <y-tabs-pane  name = "third">角色管理</y-tabs-pane>
+            <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
           </y-tabs-content>
         </y-tabs>
       </div>
@@ -24,16 +24,16 @@
       <h2>标签选项卡</h2>
       <y-tabs :selected.sync = "activeName" type = "card">
         <y-tabs-nav>
-          <y-tabs-item label = "用户管理" name = "first">用户管理</y-tabs-item>
-          <y-tabs-item label="配置管理" name = "secode">配置管理</y-tabs-item>
-          <y-tabs-item label="角色管理" name = "third">角色管理</y-tabs-item>
-          <y-tabs-item label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-item>
+          <y-tabs-item  name = "first">用户管理</y-tabs-item>
+          <y-tabs-item  name = "secode">配置管理</y-tabs-item>
+          <y-tabs-item  name = "third">角色管理</y-tabs-item>
+          <y-tabs-item  name = "fourth">定时任务补偿</y-tabs-item>
         </y-tabs-nav>
         <y-tabs-content>
-          <y-tabs-pane label = "用户管理" name = "first">用户管理</y-tabs-pane>
-          <y-tabs-pane label="配置管理" name = "secode">配置管理</y-tabs-pane>
-          <y-tabs-pane label="角色管理" name = "third">角色管理</y-tabs-pane>
-          <y-tabs-pane label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-pane>
+          <y-tabs-pane  name = "first">用户管理</y-tabs-pane>
+          <y-tabs-pane  name = "secode">配置管理</y-tabs-pane>
+          <y-tabs-pane  name = "third">角色管理</y-tabs-pane>
+          <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
         </y-tabs-content>
       </y-tabs>
     </div>
@@ -42,16 +42,58 @@
       <h2>卡片选项卡</h2>
       <y-tabs :selected.sync = "activeName" type = "border-card">
         <y-tabs-nav>
-          <y-tabs-item label = "用户管理" name = "first">用户管理</y-tabs-item>
-          <y-tabs-item label="配置管理" name = "secode">配置管理</y-tabs-item>
-          <y-tabs-item label="角色管理" name = "third">角色管理</y-tabs-item>
-          <y-tabs-item label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-item>
+          <y-tabs-item  name = "first">用户管理</y-tabs-item>
+          <y-tabs-item  name = "secode">配置管理</y-tabs-item>
+          <y-tabs-item  name = "third">角色管理</y-tabs-item>
+          <y-tabs-item  name = "fourth">定时任务补偿</y-tabs-item>
         </y-tabs-nav>
         <y-tabs-content>
-          <y-tabs-pane label = "用户管理" name = "first">用户管理</y-tabs-pane>
-          <y-tabs-pane label="配置管理" name = "secode">配置管理</y-tabs-pane>
-          <y-tabs-pane label="角色管理" name = "third">角色管理</y-tabs-pane>
-          <y-tabs-pane label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-pane>
+          <y-tabs-pane  name = "first">用户管理</y-tabs-pane>
+          <y-tabs-pane  name = "secode">配置管理</y-tabs-pane>
+          <y-tabs-pane  name = "third">角色管理</y-tabs-pane>
+          <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
+        </y-tabs-content>
+      </y-tabs>
+    </div>
+
+    <div class = "item">
+      <h2>自定义标签名称</h2>
+      <y-tabs :selected.sync = "activeName" type = "border-card">
+        <y-tabs-nav>
+          <y-tabs-item  name = "first">
+            <template>
+              <y-icon name = "settings"></y-icon>
+              用户管理
+            </template>
+          </y-tabs-item>
+          <y-tabs-item  name = "secode">配置管理</y-tabs-item>
+          <y-tabs-item  name = "third">角色管理</y-tabs-item>
+          <y-tabs-item  name = "fourth">定时任务补偿</y-tabs-item>
+        </y-tabs-nav>
+        <y-tabs-content>
+          <y-tabs-pane  name = "first">用户管理</y-tabs-pane>
+          <y-tabs-pane  name = "secode">配置管理</y-tabs-pane>
+          <y-tabs-pane  name = "third">角色管理</y-tabs-pane>
+          <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
+        </y-tabs-content>
+      </y-tabs>
+    </div>
+    <div class = "item">
+      <h2>禁用标签</h2>
+      <y-tabs :selected.sync = "activeName">
+        <y-tabs-nav>
+          <y-tabs-item  name = "first" >
+              用户管理
+          </y-tabs-item>
+          <y-tabs-item  name = "secode" disabled >配置管理</y-tabs-item>
+          <y-tabs-item  name = "third">角色管理</y-tabs-item>
+          <y-tabs-item  name = "fourth">定时任务补偿</y-tabs-item>
+        </y-tabs-nav>
+        <y-tabs-content>
+          <y-tabs-pane  name = "first">用户管理</y-tabs-pane>
+          <y-tabs-pane  name = "secode">配置管理</y-tabs-pane>
+          <y-tabs-pane  name = "third">角色管理</y-tabs-pane>
+          <y-tabs-pane  name = "fourth">定时任务补偿</y-tabs-pane>
         </y-tabs-content>
       </y-tabs>
     </div>
