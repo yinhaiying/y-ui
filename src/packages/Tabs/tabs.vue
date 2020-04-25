@@ -36,7 +36,16 @@ export default {
   },
   mounted(){
     // 初始化的时候必须在mounted里面执行。确保子组件中的$on监听都绑定上了。
-    this.eventBus.$emit('update:selected',this.selected)
+    this.$children.forEach((vm) => {
+      if(vm.$options.name === 'y-tabs-nav'){
+        vm.$children.forEach((child) => {
+          if(child.$options.name === 'y-tabs-item' && child.name === this.selected ){
+            this.eventBus.$emit('update:selected',{name:this.selected,vm:child})
+          }
+        })
+      }
+    })
+
   }
 }
 </script>
@@ -44,5 +53,6 @@ export default {
 <style lang="scss" scoped>
 .y-tabs{
   border:1px solid #ebebeb;
+  // box-sizing: border-box;
 }
 </style>

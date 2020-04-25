@@ -1,5 +1,5 @@
 <template>
-  <div class = "y-tabs-item" @click = "xxx" :class = "classes">
+  <div class = "y-tabs-item" @click = "xxx" :class = "classes" ref = "tabsItem">
     <slot></slot>
   </div>
 </template>
@@ -19,10 +19,10 @@ export default {
       required:true
     }
   },
-  mounted(){
-    this.eventBus.$on('update:selected',(name) => {
+  created(){
+    this.eventBus.$on('update:selected',({name,vm}) => {
       this.active = this.name === name;
-    })
+    });
   },
   computed:{
     classes(){
@@ -33,7 +33,7 @@ export default {
   },
   methods:{
     xxx(){
-      this.eventBus.$emit('update:selected',this.name)
+      this.eventBus.$emit('update:selected',{name:this.name,vm:this})
     }
   }
 }
@@ -42,8 +42,12 @@ export default {
 <style lang="scss" scoped>
 .y-tabs-item{
   flex-shrink: 0;
-  padding:0 2em;
+  margin:0 20px;
+  // box-sizing:border-box;
   cursor:pointer;
+  display:flex;
+  align-items:center;
+  height:100%;
   &.is-active{
     color:#409eff;
   }

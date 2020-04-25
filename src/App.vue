@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./styles/reset.scss";
 #app {
   width:800px;
   font-family: Avenir, Helvetica, Arial, sans-serif;

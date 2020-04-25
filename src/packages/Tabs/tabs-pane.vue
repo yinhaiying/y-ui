@@ -20,7 +20,7 @@ export default {
     }
   },
   created(){
-    this.eventBus.$on('update:selected',(name) => {
+    this.eventBus.$on('update:selected',({name,el}) => {
       this.active = this.name === name;
     })
   },
@@ -37,8 +37,7 @@ export default {
 <style lang="scss" scoped>
 .y-tabs-pane{
   min-height:50px;
-  &.is-active{
-
-  }
+  padding-left:20px;
+  padding-top:20px;
 }
 </style>
