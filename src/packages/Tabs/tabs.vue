@@ -62,9 +62,11 @@ export default {
   },
   computed:{
     tabClass(){
-      return {
-        "y-tab--type":this.type
+      let classes = [];
+      if(this.type){
+        classes.push('y-tabs--' + this.type)
       }
+      return classes;
     }
   }
 }
@@ -72,6 +74,11 @@ export default {
 
 <style lang="scss" scoped>
 .y-tabs{
-  // border:1px solid #ebebeb;
+  min-width:600px;
+  &--border-card{
+    border:1px solid #dcdfe6;
+    border-top:none;
+    box-shadow:0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+  }
 }
 </style>

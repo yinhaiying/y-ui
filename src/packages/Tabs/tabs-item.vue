@@ -26,10 +26,14 @@ export default {
   },
   computed:{
     classes(){
-      return {
-        "is-active":this.active,
-        "y-tabs-item--type":this.type
+      let classes = [];
+      if(this.type){
+        classes.push('y-tabs-item--' + this.type)
       }
+      if(this.active){
+        classes.push("is-active")
+      }
+      return classes;
     }
   },
   methods:{
@@ -53,11 +57,27 @@ export default {
     color:#409eff;
     border-bottom-color:transparent;
   }
-  &--type{
-    border:1px solid #e4e7ed;
-    &:not(:first-child):not(:last-child){
-      margin-left:-1px;
+  // 标签选项卡样式
+  &--card{
+    border-left:1px solid #e4e7ed;
+    border-top:1px solid #e4e7ed;
+    border-bottom:1px solid #e4e7ed;
+    &:last-child{
+      border-right:1px solid #e4e7ed;
     }
+  }
+  // 卡片选项卡样式
+  &--border-card{
+    border-left:1px solid #e4e7ed;
+    border-top:1px solid #e4e7ed;
+    border-bottom:1px solid #e4e7ed;
+    &:last-child{
+      border-right:1px solid #e4e7ed;
+    }
+    &.is-active{
+    background:#fff;
+    }
+
   }
 }
 </style>

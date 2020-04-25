@@ -32,9 +32,11 @@ export default {
       }
     },
     navClass(){
-      return {
-        'y-tabs-nav--type':this.type
+      let classes = [];
+      if(this.type){
+        classes.push('y-tabs-nav--' + this.type)
       }
+      return classes;
     }
   }
 }
@@ -48,7 +50,18 @@ $nav-height:40px;
   justify-content: flex-start;
   align-items: center;
   position:relative;
-  &--type{
+  // 标签选项卡样式
+  &--card{
+    & > .y-tabs__active-bar{
+      display:none;
+    }
+    &:after{
+      height:0 !important;
+    }
+  }
+  // 卡片选项卡样式
+  &--border-card{
+    background:#F5F7FA;
     & > .y-tabs__active-bar{
       display:none;
     }

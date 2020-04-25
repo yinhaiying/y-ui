@@ -38,6 +38,24 @@
       </y-tabs>
     </div>
 
+    <div class = "item">
+      <h2>卡片选项卡</h2>
+      <y-tabs :selected.sync = "activeName" type = "border-card">
+        <y-tabs-nav>
+          <y-tabs-item label = "用户管理" name = "first">用户管理</y-tabs-item>
+          <y-tabs-item label="配置管理" name = "secode">配置管理</y-tabs-item>
+          <y-tabs-item label="角色管理" name = "third">角色管理</y-tabs-item>
+          <y-tabs-item label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-item>
+        </y-tabs-nav>
+        <y-tabs-content>
+          <y-tabs-pane label = "用户管理" name = "first">用户管理</y-tabs-pane>
+          <y-tabs-pane label="配置管理" name = "secode">配置管理</y-tabs-pane>
+          <y-tabs-pane label="角色管理" name = "third">角色管理</y-tabs-pane>
+          <y-tabs-pane label="定时任务补偿" name = "fourth">定时任务补偿</y-tabs-pane>
+        </y-tabs-content>
+      </y-tabs>
+    </div>
+
   </div>
 </template>
 
