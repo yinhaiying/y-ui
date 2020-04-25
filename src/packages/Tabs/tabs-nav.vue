@@ -28,7 +28,7 @@ export default {
       console.log(this.width,this.offsetLeft)
       return {
         width:this.width + 'px',
-        left:this.offsetLeft + 'px'
+        transform:`translateX(${this.offsetLeft}px)`
       }
 
     }
@@ -49,14 +49,14 @@ $nav-height:40px;
     position: absolute;
     left: 0;
     bottom: 0;
-    // width: 100%;
+    width: 100%;
     height: 2px;
     background-color: #e4e7ed;
     z-index: 1;
   }
   & > .y-tabs__active-bar{
     position:absolute;
-    left:0;
+    // left:0;
     bottom:0;
     height:2px;
     background-color:#409eff;
