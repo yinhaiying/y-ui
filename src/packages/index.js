@@ -8,6 +8,7 @@ import TabsPane from './Tabs/tabs-pane.vue'
 import TabsContent from './Tabs/tabs-content.vue'
 import TabsNav from './Tabs/tabs-nav.vue'
 import TabsItem from './Tabs/tabs-item.vue'
+import Pagination from './pagination/pagination.vue'
 import Vue from 'vue'
 const components  = [
   Button,
@@ -17,7 +18,8 @@ const components  = [
   TabsContent,
   TabsPane,
   TabsNav,
-  TabsItem
+  TabsItem,
+  Pagination
 ];
 const install = (Vue) => {
   // 把所有的组件设置程全局组件

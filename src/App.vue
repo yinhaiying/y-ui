@@ -3,7 +3,8 @@
     <!-- <button-example></button-example> -->
     <!-- <icon-example></icon-example>   -->
     <!-- <message-example></message-example> -->
-    <tabs-example></tabs-example>
+    <!-- <tabs-example></tabs-example> -->
+    <pagination-example></pagination-example>
   </div>
 </template>
 <script>
@@ -11,13 +12,15 @@ import ButtonExample from './example/button'
 import IconExample from './example/icon'
 import MessageExample from './example/message'
 import TabsExample from './example/tabs'
+import PaginationExample from './example/pagination'
 export default {
   name: 'App',
   components: {
     ButtonExample,
     IconExample,
     MessageExample,
-    TabsExample
+    TabsExample,
+    PaginationExample
   }
 }
 </script>
@@ -30,7 +33,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  // margin-top: 160px;
+  margin-top: 160px;
   margin-left:100px;
 }
 </style>
