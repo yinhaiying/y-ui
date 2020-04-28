@@ -41,21 +41,17 @@ export default {
       let startPage,endPage;
       startPage = this.currentPage -offset;
       endPage = this.currentPage + offset;
-      if(startPage < 1){
-        endPage = this.currentPage + offset + 1 - startPage;
-      }
-      if(endPage > this.totalPage){
-        startPage = this.currentPage - offset - 1 - (endPage - this.totalPage);
-      }
+      if(startPage < 2){endPage = this.currentPage + offset + 2 - startPage;}
+      if(endPage > this.totalPage){startPage = this.currentPage - offset - 1 - (endPage - this.totalPage);}
       for(let i = startPage;i <= endPage;i++ ){
         pagesArr.push(i);
       }
       pagesArr = unique(pagesArr).sort((a,b) => a-b);
       let pages = [];
       for(let i = 0;i < pagesArr.length;i++){
-        let flag = pagesArr[i] <= this.totalPage && pagesArr[i] >= 0;
+        let flag = pagesArr[i] <= this.totalPage && pagesArr[i] > 0;
         if(pagesArr[i+1] && pagesArr[i+1] - pagesArr[i] > 1 && flag){
-          if(pagesArr[i] <= this.totalPage || pagesArr[i] >= 0){
+          if(pagesArr[i] <= this.totalPage || pagesArr[i] > 0){
             pages.push(pagesArr[i]);
             pages.push('...');
           }
@@ -74,7 +70,7 @@ export default {
         diff = this.totalPage - this.currentPage;
         page = diff >= 5 ?this.currentPage + 5 :this.currentPage + diff;
       }else if (page === '...' && !isRight){
-        diff = this.currentPage - 0;
+        diff = this.currentPage - 1;
         page = diff >=5 ? this.currentPage - 5:this.currentPage - diff;
       }
       this.$emit('page-change',page)
