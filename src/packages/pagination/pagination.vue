@@ -24,31 +24,31 @@ export default {
     },
     currentPage:{
       type:[Number,String],
-      default:0
+      default:1
+    },
+    pagerCount:{
+      type:[Number,String],
+      default:5,
+      validator(value){
+        return value % 2 > 0;
+      }
     }
   },
   computed:{
     pages(){
-      // TODO:这里需要优化一下代码。
-      let pagesArr = [0,this.currentPage,this.totalPage];
-      if(this.currentPage > 2 && this.totalPage - this.currentPage > 2){
-        pagesArr.push(this.currentPage-1,this.currentPage-2,this.currentPage+1,this.currentPage+2)
-      }else if(this.currentPage <= 2){
-        if(this.currentPage === 2){
-          pagesArr.push(this.currentPage-1,this.currentPage+1,this.currentPage+2,this.currentPage+3)
-        }else if(this.currentPage === 1){
-          pagesArr.push(this.currentPage+1,this.currentPage+2,this.currentPage+3,this.currentPage + 4)
-        }else if(this.currentPage === 0){
-          pagesArr.push(this.currentPage+1,this.currentPage+2,this.currentPage+3,this.currentPage + 4,this.currentPage + 5)
-        }
-      }else if(this.totalPage - this.currentPage <= 2){
-        if(this.totalPage - this.currentPage === 2){
-          pagesArr.push(this.currentPage - 3,this.currentPage-2,this.currentPage-1,this.currentPage+1);
-        }else if(this.currentPage === this.totalPage - 1){
-          pagesArr.push(this.currentPage-4,this.currentPage-3,this.currentPage-2,this.currentPage-1)
-        }else if(this.currentPage === this.totalPage){
-          pagesArr.push(this.currentPage - 5,this.currentPage -4 ,this.currentPage-3,this.currentPage-2,this.currentPage-1)
-        }
+      let pagesArr = [1,this.totalPage];
+      let offset = (this.pagerCount - 1)/2;
+      let startPage,endPage;
+      startPage = this.currentPage -offset;
+      endPage = this.currentPage + offset;
+      if(startPage < 1){
+        endPage = this.currentPage + offset + 1 - startPage;
+      }
+      if(endPage > this.totalPage){
+        startPage = this.currentPage - offset - 1 - (endPage - this.totalPage);
+      }
+      for(let i = startPage;i <= endPage;i++ ){
+        pagesArr.push(i);
       }
       pagesArr = unique(pagesArr).sort((a,b) => a-b);
       let pages = [];
