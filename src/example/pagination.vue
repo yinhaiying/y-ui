@@ -16,6 +16,7 @@ export default {
   },
   methods:{
     pageChange(value){
+      console.log('page:'+value)
       this.currentPage = value;
     }
   }
