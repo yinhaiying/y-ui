@@ -8,7 +8,7 @@ export const unique = (arr) =>{
   let result = [];
   arr.forEach((item) => {
     if(!obj[item]){
-      obj[item] = item;
+      obj[item] = true;
       result.push(item);
     }
   });
