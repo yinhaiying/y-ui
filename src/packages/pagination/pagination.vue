@@ -29,7 +29,27 @@ export default {
   },
   computed:{
     pages(){
-      let pagesArr = [0,this.totalPage,this.currentPage,this.currentPage-1,this.currentPage-2,this.currentPage+1,this.currentPage+2];
+      // TODO:这里需要优化一下代码。
+      let pagesArr = [0,this.currentPage,this.totalPage];
+      if(this.currentPage > 2 && this.totalPage - this.currentPage > 2){
+        pagesArr.push(this.currentPage-1,this.currentPage-2,this.currentPage+1,this.currentPage+2)
+      }else if(this.currentPage <= 2){
+        if(this.currentPage === 2){
+          pagesArr.push(this.currentPage-1,this.currentPage+1,this.currentPage+2,this.currentPage+3)
+        }else if(this.currentPage === 1){
+          pagesArr.push(this.currentPage+1,this.currentPage+2,this.currentPage+3,this.currentPage + 4)
+        }else if(this.currentPage === 0){
+          pagesArr.push(this.currentPage+1,this.currentPage+2,this.currentPage+3,this.currentPage + 4,this.currentPage + 5)
+        }
+      }else if(this.totalPage - this.currentPage <= 2){
+        if(this.totalPage - this.currentPage === 2){
+          pagesArr.push(this.currentPage - 3,this.currentPage-2,this.currentPage-1,this.currentPage+1);
+        }else if(this.currentPage === this.totalPage - 1){
+          pagesArr.push(this.currentPage-4,this.currentPage-3,this.currentPage-2,this.currentPage-1)
+        }else if(this.currentPage === this.totalPage){
+          pagesArr.push(this.currentPage - 5,this.currentPage -4 ,this.currentPage-3,this.currentPage-2,this.currentPage-1)
+        }
+      }
       pagesArr = unique(pagesArr).sort((a,b) => a-b);
       let pages = [];
       for(let i = 0;i < pagesArr.length;i++){
