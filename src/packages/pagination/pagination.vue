@@ -1,10 +1,12 @@
 <template>
   <div class="y-pagination">
+    <span class = "y-pagination-item" :class = "{'prev-disabled': currentPage === 0}" @click = "$emit('page-change',currentPage - 1 >= 0 ? currentPage - 1 :0)"><y-icon name = "left"></y-icon></span>
     <span class = "y-pagination-item"
           :class = "[item === currentPage ? 'active' :'' ]"
           v-for = "(item,index) in pages" :key = "index"
           @click = "onClick(item,index)"
           >{{item}}</span>
+    <span class = "y-pagination-item" :class = "{'next-disabled': currentPage === totalPage}" @click = "$emit('page-change',totalPage - currentPage > 0 ? currentPage + 1 :totalPage)"><y-icon name = "right"></y-icon></span>
   </div>
 </template>
 
@@ -86,6 +88,10 @@ export default {
       background:#409eff;
       color:#fff;
       cursor: default;
+    }
+    &.prev-disabled,&.next-disabled{
+      cursor:not-allowed;
+      color:#c0c4cc;
     }
   }
 }
