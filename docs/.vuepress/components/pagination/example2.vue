@@ -1,8 +1,6 @@
 <template>
   <div class="pageination">
-    <y-pagination :total-page = "totalPage"
-                  :current-page = "currentPage"
-                  @page-change = "pageChange" background ></y-pagination>
+    <y-pagination :pagerCount = "pagerCount" :total-page = "totalPage" :current-page = "currentPage" @page-change = "pageChange"></y-pagination>
   </div>
 
 </template>
@@ -12,8 +10,9 @@ export default {
   name:'PaginationExample',
   data(){
     return {
-      totalPage:10,
-      currentPage:3,
+      totalPage:100,
+      currentPage:10,
+      pagerCount:7
     }
   },
   methods:{
@@ -23,7 +22,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

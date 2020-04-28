@@ -1,8 +1,8 @@
 <template>
-  <div class="y-pagination">
+  <div class="y-pagination" v-if = "!hideOnSinglePage">
     <span class = "y-pagination-item" :class = "{'prev-disabled': currentPage === 1}" @click = "$emit('page-change',currentPage - 1 > 0 ? currentPage-1 : 1)"><y-icon name = "left"></y-icon></span>
     <span class = "y-pagination-item"
-          :class = "[item === currentPage ? 'active' :'' ]"
+          :class = "[item === currentPage ? 'active' :'', background ? 'y-pagination-item--background' :'' ]"
           v-for = "(item,index) in pages" :key = "index"
           @click = "onClick(item,index)"
           >{{item}}</span>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {unique} from '@/utils/util.js'
+import {unique} from '../../utils//util.js';
 export default {
   name:'y-pagination',
   data(){
@@ -32,6 +32,14 @@ export default {
       validator(value){
         return value % 2 > 0;
       }
+    },
+    "hideOnSinglePage":{
+      type:Boolean,
+      default:false
+    },
+    background:{
+      type:Boolean,
+      default:false
     }
   },
   computed:{
@@ -75,7 +83,7 @@ export default {
       }
       this.$emit('page-change',page)
     }
-  }
+  },
 }
 </script>
 
@@ -84,8 +92,6 @@ export default {
   &-item{
     min-width: 30px;
     margin: 0px 5px;
-    border-radius: 2px;
-    border:1px solid #ddd;
     box-sizing: border-box;
     text-align: center;
     padding: 0px 4px;
@@ -101,6 +107,16 @@ export default {
       color:#409eff;
     }
     &.active{
+      color:#409eff;
+      cursor: default;
+    }
+    &--background{
+      background-color: #f4f4f5;
+      color: #606266;
+      border-radius: 2px;
+      border:1px solid #ddd;
+    }
+    &--background.active{
       background:#409eff;
       color:#fff;
       cursor: default;

@@ -13,6 +13,7 @@ import TabsNav from '../../src/packages/Tabs/tabs-nav.vue'
 import TabsItem from '../../src/packages/Tabs/tabs-item.vue'
 import TabsContent from '../../src/packages/Tabs/tabs-content.vue'
 import TabsPane from '../../src/packages/Tabs/tabs-pane.vue'
+import Pagination from '../../src/packages/pagination/pagination.vue'
 Vue.component(Button.name,Button)
 Vue.component(ButtonGroup.name,ButtonGroup)
 Vue.component(Icon.name,Icon);
@@ -21,6 +22,7 @@ Vue.component(TabsNav.name,TabsNav);
 Vue.component(TabsItem.name,TabsItem);
 Vue.component(TabsContent.name,TabsContent);
 Vue.component(TabsPane.name,TabsPane);
+Vue.component(Pagination.name,Pagination);
 
 
 Vue.directive('highlight',function (el) {

@@ -26,7 +26,14 @@ module.exports = {
                   children: [
                       'tabs',
                   ]
-            }
+            },
+            {
+                  title:'数据',
+                  collapsable: false,
+                  children: [
+                      'pagination',
+                  ]
+            },
           ]
       }
   }
