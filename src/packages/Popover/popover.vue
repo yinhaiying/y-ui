@@ -1,13 +1,14 @@
 <template>
-  <div class = "y-popover" @click = "show">
-    <div class = "content-wrapper" v-if = "visible">
+  <div class = "y-popover" @click.stop = "showPopper" >
+    <div id = "popper" @click.stop  ref = "popper" class = "content-wrapper" v-if = "visible">
       <slot name = "content"></slot>
     </div>
-    <slot></slot>
+      <slot></slot>
   </div>
 </template>
 
 <script>
+import {addClass} from "../../utils/util";
 export default {
   name:'y-popover',
   data(){
@@ -16,9 +17,24 @@ export default {
     }
   },
   methods:{
-    show(){
+    showPopper (){
+      console.log('1:'+this.visible)
       this.visible = !this.visible;
+      if(this.visible == true){
+        this.$nextTick(() => {
+          let fn = () =>{
+              this.visible = false;
+              document.removeEventListener('click',fn)
+          }
+          document.addEventListener('click',fn);
+        })
+      }
     }
+  },
+  mounted(){
+    console.log(this.$refs.popper)
+    // console.log(this.$slots.content[0].$options)
+    // console.log(document.getElementById('popper'))
   }
 }
 </script>

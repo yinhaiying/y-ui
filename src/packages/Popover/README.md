@@ -28,3 +28,7 @@ Popover实现的功能就是在用户通过hover,click,focus等触发时，在�
 <div ref = "content"></div>
 <y-button v-popover="$refs.content">点击</y-button>
 ```
+
+
+## 需要解决的问题
+1. popover组件点击button时，点击其他地方时应该隐藏。如何监听外面的点击事件。
