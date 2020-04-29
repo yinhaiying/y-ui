@@ -9,6 +9,7 @@ import TabsContent from './Tabs/tabs-content.vue'
 import TabsNav from './Tabs/tabs-nav.vue'
 import TabsItem from './Tabs/tabs-item.vue'
 import Pagination from './pagination/pagination.vue'
+import Popover from './Popover/popover.vue'
 import Vue from 'vue'
 const components  = [
   Button,
@@ -19,7 +20,8 @@ const components  = [
   TabsPane,
   TabsNav,
   TabsItem,
-  Pagination
+  Pagination,
+  Popover
 ];
 const install = (Vue) => {
   // 把所有的组件设置程全局组件
