@@ -32,3 +32,98 @@ Popover实现的功能就是在用户通过hover,click,focus等触发时，在�
 
 ## 需要解决的问题
 1. popover组件点击button时，点击其他地方时应该隐藏。如何监听外面的点击事件。
+```javascript
+showPopover(){
+  this.visible = !this.visible;
+  if(this.visible == true){
+      let fn = () =>{
+          this.visible = false;
+      }
+      document.body.addEventListener('click',fn);
+  }
+}
+```
+2. 监听document事件面临的冒泡问题
+由于冒泡导致连续触发元素的点击和document.body监听的点击事件执行。而这两个执行
+一个使得popover展示，一个使得popover关闭，因此最终没有任何的效果。我们需要取消冒泡。
+```html
+  <div class = "y-popover" @click.stop= "showPopper" >
+    <div id = "popper" @click.stop  ref = "popper" class = "content-wrapper" v-if = "visible">
+      <slot name = "content"></slot>
+    </div>
+      <slot></slot>
+  </div>
+```
+
+3. 监听document.body的事件面临的高度问题。
+如果document.body的高度很小不是占据全屏的，那么我们点击document.body以外的区域无法控制隐藏。
+隐藏我们需要监听整个文档，为不仅仅是高度区域。
+```javascript
+showPopover(){
+  this.visible = !this.visible;
+  if(this.visible == true){
+      let fn = () =>{
+          this.visible = false;
+      }
+      document.addEventListener('click',fn);
+  }
+}
+```
+4. 解决多次点击document，没有移除之前document身上的监听器，导致监听器累加。
+```javascript
+showPopover (){
+  this.visible = !this.visible;
+  if(this.visible == true){
+      let fn = () =>{
+          this.visible = false;
+          document.removeEventListener('click',fn)
+      }
+      document.addEventListener('click',fn);
+  }
+}
+```
+5. y-popover外的包裹组件为overflow:hidden时的不可见问题。
+由于我们展示的内容，通常是在元素的外面，比如顶部，右侧，底部，左侧等。
+这时候，如果外面的包裹元素设置为overflow:hidden,那么这时候会导致
+弹出框的内容不可见。也就是说我们不能把弹出框放到跟按钮一个层级。最好把它
+放到最外层，作为body的子元素。
+```javascript
+    showPopover (){
+      this.visible = !this.visible;
+      if(this.visible == true){
+        this.$nextTick(() => {
+          // 确保$refs已经存在，然后把它添加到body身上
+          document.body.appendChild(this.$refs.popper);
+        })
+        let fn = () =>{
+            this.visible = false;
+            document.removeEventListener('click',fn)
+        }
+        document.addEventListener('click',fn);
+      }
+    }
+```
+虽然，我们把弹出框放到body下面了，但是这会导致弹出框和触发器相对位置发生变化。
+因此，我们需要线获取到触发器的位置，然后设置弹出框的位置。
+```javascript
+setPosition(){
+    // 确保$refs已经存在，然后把它添加到body身上
+    document.body.appendChild(this.$refs.popper);
+    let triggerWrapperInfo = this.$refs.triggerWrapper.getBoundingClientRect();
+    let popoverInfo = this.$refs.popper.getBoundingClientRect();
+    this.$refs.popper.style.left = triggerWrapperInfo.left + 'px';
+    this.$refs.popper.style.top = triggerWrapperInfo.top -  popoverInfo.height  + 'px';
+}
+```
+6、使用绝对定位带来的问题。我们获取的left、top等值都是相对于可视区的值。但是弹窗框最终设置的left、top等值
+都是相对于document进行绝对定位。当页面长度在可视区内时不会出现问题，但是如果页面超出可视区，那么会多出一个滚动高度。
+```javascript
+setPosition(){
+    // 确保$refs已经存在，然后把它添加到body身上
+    document.body.appendChild(this.$refs.popper);
+    let triggerWrapperInfo = this.$refs.triggerWrapper.getBoundingClientRect();
+    let popoverInfo = this.$refs.popper.getBoundingClientRect();
+    this.$refs.popper.style.left = triggerWrapperInfo.left + window.scrollX + 'px';
+    this.$refs.popper.style.top = triggerWrapperInfo.top + window.scrollY -  popoverInfo.height  + 'px';
+}
+```

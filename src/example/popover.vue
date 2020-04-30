@@ -1,5 +1,6 @@
 <template>
   <div class="popover-example">
+    <!-- <div class="test" style = "height:1000px;border:10px solid green;margin-left:1000px"></div> -->
     <y-popover>
       <template slot = "content">
         <div>这里是popover展示的内容</div>
@@ -15,6 +16,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.popover-example{
+  overflow:hidden;
+}
 </style>
