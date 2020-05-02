@@ -1,6 +1,6 @@
 <template>
   <div class="y-popover" @click="showPopover" ref = "popover">
-    <div id="popper" ref="contentWrapper" class="content-wrapper" v-if="visible">
+    <div id="popper" ref="contentWrapper" class="content-wrapper" v-if="visible" :class = "{[`popover-${position}`]:true}">
       <slot name="content"></slot>
     </div>
     <span class="trigger-wrapper" ref="triggerWrapper">
@@ -16,8 +16,16 @@ export default {
   data() {
     return {
       visible: false,
-      position: {},
     };
+  },
+  props:{
+    position:{
+      type:String,
+      default:'top',
+      validator(value){
+        return ['top','left','right','bottom'].includes(value);
+      }
+    }
   },
   methods: {
     close(){
@@ -49,11 +57,23 @@ export default {
     },
     setPosition() {
       // 确保$refs已经存在，然后把它添加到body身上
-      document.body.appendChild(this.$refs.contentWrapper);
+      let contentWrapper = this.$refs.contentWrapper;
+      document.body.appendChild(contentWrapper);
       let triggerWrapperInfo = this.$refs.triggerWrapper.getBoundingClientRect();
-      let popoverInfo = this.$refs.contentWrapper.getBoundingClientRect();
-      this.$refs.contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX + "px";
-      this.$refs.contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY - popoverInfo.height + "px";
+      let popoverInfo = contentWrapper.getBoundingClientRect();
+      if(this.position === 'top'){
+        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX + "px";
+        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY - popoverInfo.height + "px";
+      }else if(this.position === 'bottom'){
+        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX + "px";
+        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY + triggerWrapperInfo.height + "px";
+      }else if(this.position === 'left'){
+        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX - popoverInfo.width + "px";
+        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY + (triggerWrapperInfo.height - popoverInfo.height)/2  + "px";
+      }else if(this.position === 'right'){
+        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX + triggerWrapperInfo.width + "px";
+        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY + (triggerWrapperInfo.height - popoverInfo.height)/2  + "px";
+      }
     },
   },
 };
@@ -78,7 +98,6 @@ export default {
   background:#fff;
   padding: 18px 20px;
   z-index: 10000;
-  margin-top:-10px;
   &::before,&::after{
     content:"";
     display:block;
@@ -86,15 +105,61 @@ export default {
     width:0px;
     height:0px;
     position:absolute;
+  }
+  &.popover-top{
+    margin-top:-10px;
     left:10px;
+    &::before{
+      top:100%;
+      border-top-color: #ebeef5;
+    }
+    &::after{
+      top:calc(100% - 1px);
+      border-top-color: #fff;
+    }
   }
-  &::before{
-    top:100%;
-    border-top-color: #ebeef5;
+  &.popover-bottom{
+    margin-top:10px;
+    left:10px;
+    &::before{
+      bottom:100%;
+      border-bottom-color: #ebeef5;
+    }
+    &::after{
+      bottom:calc(100% - 1px);
+      border-bottom-color: #fff;
+    }
   }
-  &::after{
-    top:calc(100% - 1px);
-    border-top-color: #fff;
+  &.popover-left{
+    margin-left:-10px;
+    &::before{
+      left:100%;
+      border-left-color: #ebeef5;
+      top:50%;
+      transform: translateY(-50%);
+    }
+    &::after{
+      left:calc(100% - 1px);
+      border-left-color: #fff;
+      top:50%;
+      transform: translateY(-50%);
+    }
   }
+  &.popover-right{
+    margin-left:10px;
+    &::before{
+      right:100%;
+      border-right-color: #ebeef5;
+      top:50%;
+      transform: translateY(-50%);
+    }
+    &::after{
+      right:calc(100% - 1px);
+      border-right-color: #fff;
+      top:50%;
+      transform: translateY(-50%);
+    }
+  }
+
 }
 </style>
