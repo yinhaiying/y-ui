@@ -139,3 +139,14 @@ setPosition(){
   </y-popover>
 </div>
 ```
+
+8. 各种样式需要考虑的问题：
+1、如果内容区域文字很长，会导致占领整行之后才会换行，显得比较丑，因此需要设置最大宽度：max-width:20em
+2、由于设置了最大宽度，如果是一个很长的英文单词，会导致文字溢出。需要设置 word-break: break-all;
+3、内容区域有box-shadow,但是小三角区域没有，而且无法直接给小三角加上box-shadow。
+  解决方法：使用filter: drop-shadow()替代box-shadow
+  ```
+  filter:drop-shadow(0 0 3px rgba(0,0,0,0.1));
+  background:#fff;
+  ```
+

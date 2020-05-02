@@ -4,12 +4,11 @@
     <div >
       <y-popover>
         <template slot = "content">
-          <div>这里是popover展示的内容</div>
+          <div>helooworlhelooworldhelooworldhelooworldhelooworldhelooworldhelooworldhelooworldd</div>
         </template>
         <y-button type = "primary">激活</y-button>
       </y-popover>
     </div>
-
   </div>
 </template>
 

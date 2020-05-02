@@ -69,10 +69,32 @@ export default {
   }
 }
 .content-wrapper {
+  max-width:20em;
+  word-break: break-all;
   position: absolute;
   border: 1px solid #ebeef5;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 2px 12px 0 red;
+  filter:drop-shadow(0 1px 1px  rgba(0,0,0,0.1));
+  background:#fff;
   padding: 18px 20px;
   z-index: 10000;
+  margin-top:-10px;
+  &::before,&::after{
+    content:"";
+    display:block;
+    border:10px solid transparent;
+    width:0px;
+    height:0px;
+    position:absolute;
+    left:10px;
+  }
+  &::before{
+    top:100%;
+    border-top-color: #ebeef5;
+  }
+  &::after{
+    top:calc(100% - 1px);
+    border-top-color: #fff;
+  }
 }
 </style>
