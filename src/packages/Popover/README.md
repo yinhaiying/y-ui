@@ -127,3 +127,15 @@ setPosition(){
     this.$refs.popper.style.top = triggerWrapperInfo.top + window.scrollY -  popoverInfo.height  + 'px';
 }
 ```
+7、使用.stop阻止冒泡带来的新的问题。我们为了监听document身上的事件，阻止了触发器的事件冒泡，但是这带来了新的问题。假如我们使用时外面包裹元素
+绑定了点击事件，那么在点击触发器时将不会执行。
+```html
+<div @click = "xxx"> <!--这里的click事件，在点击button时不会执行 -->
+  <y-popover>
+    <template slot = "content">
+      <div>这里是popover展示的内容</div>
+    </template>
+    <y-button type = "primary">激活</y-button>
+  </y-popover>
+</div>
+```
