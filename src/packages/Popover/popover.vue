@@ -1,5 +1,5 @@
 <template>
-  <div class="y-popover" @click="showPopover" ref = "popover">
+  <div class="y-popover"  ref = "popover">
     <div id="popper" ref="contentWrapper" class="content-wrapper" v-if="visible" :class = "{[`popover-${position}`]:true}">
       <slot name="content"></slot>
     </div>
@@ -25,6 +25,30 @@ export default {
       validator(value){
         return ['top','left','right','bottom'].includes(value);
       }
+    },
+    trigger:{
+      type:String,
+      default:'click',
+      validator(value){
+        return ['click','hover'].includes(value);
+      }
+    }
+  },
+  mounted(){
+    // 动态绑定事件
+    if(this.trigger === 'click'){
+      this.$refs.popover.addEventListener('click',this.onClick)
+    }else{
+      this.$refs.popover.addEventListener('mouseenter',this.open);
+      this.$refs.popover.addEventListener('mouseleave',this.close);
+    }
+  },
+  destroyed(){
+    if(this.trigger === 'click'){
+      this.$refs.popover.removeEventListener('click',this.onClick)
+    }else{
+      this.$refs.popover.removeEventListener('mouseenter',this.open);
+      this.$refs.popover.removeEventListener('mouseleave',this.close);
     }
   },
   methods: {
@@ -39,7 +63,7 @@ export default {
         this.listenToDocument();
       })
     },
-    showPopover(event) {
+    onClick(event) {
       if(this.$refs.triggerWrapper.contains(event.target)){
         this.visible ? this.close() : this.open();
       }

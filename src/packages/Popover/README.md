@@ -150,3 +150,18 @@ setPosition(){
   background:#fff;
   ```
 
+## 动态绑定事件
+popover需要支持click、hover等事件，需要通过js手动绑定，不能直接使用@同时绑定多个事件
+```javascript
+if(this.trigger === 'click'){
+  this.$refs.popover.addEventListener('click',this.onClick)
+}else{
+  this.$refs.popover.addEventListener('mouseenter',this.open);
+  this.$refs.popover.addEventListener('mouseleave',this.close);
+}
+```
+对于自己手动绑定的事件，需要在destroyed中进行移除
+```javascript
+
+
+```
