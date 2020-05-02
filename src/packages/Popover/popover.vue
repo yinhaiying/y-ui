@@ -61,19 +61,14 @@ export default {
       document.body.appendChild(contentWrapper);
       let triggerWrapperInfo = this.$refs.triggerWrapper.getBoundingClientRect();
       let popoverInfo = contentWrapper.getBoundingClientRect();
-      if(this.position === 'top'){
-        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX + "px";
-        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY - popoverInfo.height + "px";
-      }else if(this.position === 'bottom'){
-        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX + "px";
-        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY + triggerWrapperInfo.height + "px";
-      }else if(this.position === 'left'){
-        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX - popoverInfo.width + "px";
-        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY + (triggerWrapperInfo.height - popoverInfo.height)/2  + "px";
-      }else if(this.position === 'right'){
-        contentWrapper.style.left = triggerWrapperInfo.left + window.scrollX + triggerWrapperInfo.width + "px";
-        contentWrapper.style.top = triggerWrapperInfo.top + window.scrollY + (triggerWrapperInfo.height - popoverInfo.height)/2  + "px";
+      let obj = {
+        top:{ left:triggerWrapperInfo.left + window.scrollX , top:triggerWrapperInfo.top + window.scrollY - popoverInfo.height },
+        bottom:{ left:triggerWrapperInfo.left + window.scrollX, top:triggerWrapperInfo.top + window.scrollY + triggerWrapperInfo.height },
+        left:{ left:triggerWrapperInfo.left + window.scrollX - popoverInfo.width, top:triggerWrapperInfo.top + window.scrollY + (triggerWrapperInfo.height - popoverInfo.height)/2 },
+        right:{ left:triggerWrapperInfo.left + window.scrollX + triggerWrapperInfo.width, top:triggerWrapperInfo.top + window.scrollY + (triggerWrapperInfo.height - popoverInfo.height)/2 },
       }
+      contentWrapper.style.left = obj[this.position].left  + "px";
+      contentWrapper.style.top = obj[this.position].top  + "px";
     },
   },
 };
