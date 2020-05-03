@@ -10,6 +10,9 @@ import TabsNav from './Tabs/tabs-nav.vue'
 import TabsItem from './Tabs/tabs-item.vue'
 import Pagination from './pagination/pagination.vue'
 import Popover from './Popover/popover.vue'
+import Collapse from './Cpllapse/collapse.vue'
+import CollapseItem from './Cpllapse/collapse-item.vue'
+
 import Vue from 'vue'
 const components  = [
   Button,
@@ -21,7 +24,9 @@ const components  = [
   TabsNav,
   TabsItem,
   Pagination,
-  Popover
+  Popover,
+  Collapse,
+  CollapseItem
 ];
 const install = (Vue) => {
   // 把所有的组件设置程全局组件
@@ -30,7 +35,6 @@ const install = (Vue) => {
   });
 
   Vue.prototype.$message = Message;
-
 }
 
 // vue通过script标签引入，vue挂载在window下。

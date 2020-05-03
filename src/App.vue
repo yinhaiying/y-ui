@@ -5,7 +5,8 @@
     <!-- <message-example></message-example> -->
     <!-- <tabs-example></tabs-example> -->
     <!-- <pagination-example></pagination-example> -->
-    <popover-example></popover-example>
+    <!-- <popover-example></popover-example> -->
+    <collapse-example></collapse-example>
   </div>
 </template>
 <script>
@@ -15,6 +16,7 @@ import MessageExample from './example/message'
 import TabsExample from './example/tabs'
 import PaginationExample from './example/pagination'
 import PopoverExample from './example/popover'
+import CollapseExample from './example/collapse'
 export default {
   name: 'App',
   components: {
@@ -23,7 +25,8 @@ export default {
     MessageExample,
     TabsExample,
     PaginationExample,
-    PopoverExample
+    PopoverExample,
+    CollapseExample
   }
 }
 </script>
