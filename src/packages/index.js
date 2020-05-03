@@ -10,8 +10,8 @@ import TabsNav from './Tabs/tabs-nav.vue'
 import TabsItem from './Tabs/tabs-item.vue'
 import Pagination from './pagination/pagination.vue'
 import Popover from './Popover/popover.vue'
-import Collapse from './Cpllapse/collapse.vue'
-import CollapseItem from './Cpllapse/collapse-item.vue'
+import Collapse from './Collapse/collapse.vue'
+import CollapseItem from './Collapse/collapse-item.vue'
 
 import Vue from 'vue'
 const components  = [

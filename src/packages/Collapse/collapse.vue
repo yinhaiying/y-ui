@@ -17,6 +17,9 @@ export default {
     accordion:{
       type:Boolean,
       default:false
+    },
+    selected:{
+      type:String
     }
   },
   provide(){
@@ -24,6 +27,13 @@ export default {
       eventBus:this.eventBus,
       accordion:this.accordion
     }
+  },
+  mounted(){
+    this.eventBus.$emit('update:selected',this.selected);
+    this.eventBus.$on('update:selected',(name) => {
+      console.log(name)
+      this.$emit('update:selected',name);
+    })
   }
 }
 </script>
