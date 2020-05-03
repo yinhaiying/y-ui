@@ -28,20 +28,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$border-color:#ddd;
 .y-collapse-item{
   >.title{
-    border:1px solid #ddd;
+    border:1px solid $border-color;
     min-height:32px;
     display:flex;
     align-items: center;
     padding-left:10px;
     margin:-1px;
   }
-  // &:not(:first-child){
-  //   >.title{
-  //    border-top:none;
-  //   }
-  // }
+  &:not(:first-child){
+    >.title{
+     border-top:none;
+    }
+  }
   &:first-child{
     >.title{
       border-top-left-radius:4px;
@@ -64,6 +65,11 @@ export default {
     min-height:32px;
     display:flex;
     align-items: center;
+  }
+  &.is-open:not(:last-child){
+    >.content{
+      border-bottom:1px solid $border-color;
+    }
   }
 }
 </style>

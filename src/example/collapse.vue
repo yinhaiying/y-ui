@@ -10,6 +10,9 @@
       <y-collapse-item title = "标题3">
          内容三
       </y-collapse-item>
+      <y-collapse-item title = "标题4">
+         内容四
+      </y-collapse-item>
     </y-collapse>
   </div>
 </template>
