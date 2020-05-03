@@ -19,7 +19,7 @@ export default {
       default:false
     },
     selected:{
-      type:String
+      type:Array
     }
   },
   provide(){
@@ -30,9 +30,17 @@ export default {
   },
   mounted(){
     this.eventBus.$emit('update:selected',this.selected);
-    this.eventBus.$on('update:selected',(name) => {
-      console.log(name)
-      this.$emit('update:selected',name);
+    this.eventBus.$on('update:addSelected',(name) => {
+      this.selected.push(name)
+      // 更新之后通知子组件
+      this.eventBus.$emit('update:selected',this.selected);
+      this.$emit('update:selected',this.selected);
+    })
+    this.eventBus.$on('update:removeSelected',(name) => {
+      let index = this.selected.indexOf(name);
+      this.selected.splice(index,1);
+      this.eventBus.$emit('update:selected',this.selected);
+      this.$emit('update:selected',this.selected);
     })
   }
 }

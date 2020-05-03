@@ -29,13 +29,14 @@ export default {
   },
   inject:['eventBus','accordion'],
     mounted(){
-      this.eventBus.$on('update:selected',(name) => {
-        if(name !== this.name){
+      this.eventBus.$on('update:selected',(nameArr) => {
+        console.log(nameArr.includes(this.name))
+        if(!nameArr.includes(this.name)){
           if(this.accordion){
-            this.close();
+            this.open = false;
           }
         }else{
-          this.show();
+          this.open = true;
         }
       })
   },
@@ -43,16 +44,11 @@ export default {
     toggle(){
       if(this.open){
         this.open = false;
+        this.eventBus.$emit('update:removeSelected',this.name);
       }else{
-        this.eventBus.$emit('update:selected',this.name);
+        this.eventBus.$emit('update:addSelected',this.name);
       }
     },
-    close(){
-      this.open = false;
-    },
-    show(){
-      this.open = true;
-    }
   },
 }
 </script>

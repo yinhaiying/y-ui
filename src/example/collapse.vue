@@ -52,7 +52,7 @@ export default {
   name:'CollapseExample',
   data(){
     return {
-      name:'content1'
+      name:['content1','content2']
     }
   }
 }
