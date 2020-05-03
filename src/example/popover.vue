@@ -42,6 +42,17 @@
         <y-button type = "primary">hover</y-button>
       </y-popover>
     </div>
+    <div class="slot-scope" style = "margin-top:40px">
+      <h2 style = "margin-bottom:20px;font-weight:bold;">触发方式</h2>
+      <y-popover position = "top" style = "margin-right:20px" trigger = "click">
+        <template slot = "content" slot-scope = "{close}">
+          <div>这里内容区域
+            <y-button @click = "close">关闭</y-button>
+          </div>
+        </template>
+        <y-button type = "primary">click</y-button>
+      </y-popover>
+    </div>
 
   </div>
 </template>
