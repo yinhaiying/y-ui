@@ -27,14 +27,12 @@ export default {
       open:false
     }
   },
-  inject:['eventBus','accordion'],
+  inject:['eventBus'],
     mounted(){
       this.eventBus.$on('update:selected',(nameArr) => {
-        console.log(nameArr.includes(this.name))
+        // 子组件只有获得父组件的通知才修改状态
         if(!nameArr.includes(this.name)){
-          if(this.accordion){
-            this.open = false;
-          }
+          this.open = false;
         }else{
           this.open = true;
         }
@@ -43,7 +41,6 @@ export default {
   methods:{
     toggle(){
       if(this.open){
-        this.open = false;
         this.eventBus.$emit('update:removeSelected',this.name);
       }else{
         this.eventBus.$emit('update:addSelected',this.name);

@@ -25,22 +25,28 @@ export default {
   provide(){
     return {
       eventBus:this.eventBus,
-      accordion:this.accordion
     }
   },
   mounted(){
     this.eventBus.$emit('update:selected',this.selected);
     this.eventBus.$on('update:addSelected',(name) => {
-      this.selected.push(name)
       // 更新之后通知子组件
-      this.eventBus.$emit('update:selected',this.selected);
-      this.$emit('update:selected',this.selected);
+      let selectedArr = JSON.parse(JSON.stringify(this.selected));
+      if(this.accordion){
+          selectedArr = [name]
+      }else{
+        selectedArr.push(name);
+      }
+      this.eventBus.$emit('update:selected',selectedArr);
+      this.$emit('update:selected',selectedArr);
     })
     this.eventBus.$on('update:removeSelected',(name) => {
+      let selectedArr = JSON.parse(JSON.stringify(this.selected));
       let index = this.selected.indexOf(name);
-      this.selected.splice(index,1);
-      this.eventBus.$emit('update:selected',this.selected);
-      this.$emit('update:selected',this.selected);
+      selectedArr.splice(index,1);
+      // 删除之后通知子组件。
+      this.eventBus.$emit('update:selected',selectedArr);
+      this.$emit('update:selected',selectedArr);
     })
   }
 }
