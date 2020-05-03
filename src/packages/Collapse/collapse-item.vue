@@ -28,6 +28,17 @@ export default {
     }
   },
   inject:['eventBus','accordion'],
+    mounted(){
+      this.eventBus.$on('update:selected',(name) => {
+        if(name !== this.name){
+          if(this.accordion){
+            this.close();
+          }
+        }else{
+          this.show();
+        }
+      })
+  },
   methods:{
     toggle(){
       if(this.open){
@@ -43,15 +54,6 @@ export default {
       this.open = true;
     }
   },
-  mounted(){
-      this.eventBus.$on('update:selected',(name) => {
-        if(name !== this.name){
-          this.close();
-        }else{
-          this.show();
-        }
-      })
-  }
 }
 </script>
 
