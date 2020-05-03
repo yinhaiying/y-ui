@@ -14,6 +14,7 @@ import TabsItem from '../../src/packages/Tabs/tabs-item.vue'
 import TabsContent from '../../src/packages/Tabs/tabs-content.vue'
 import TabsPane from '../../src/packages/Tabs/tabs-pane.vue'
 import Pagination from '../../src/packages/pagination/pagination.vue'
+import Popover from "../../src/packages/Popover/popover.vue"
 Vue.component(Button.name,Button)
 Vue.component(ButtonGroup.name,ButtonGroup)
 Vue.component(Icon.name,Icon);
@@ -23,6 +24,7 @@ Vue.component(TabsItem.name,TabsItem);
 Vue.component(TabsContent.name,TabsContent);
 Vue.component(TabsPane.name,TabsPane);
 Vue.component(Pagination.name,Pagination);
+Vue.component(Popover.name,Popover);
 
 
 Vue.directive('highlight',function (el) {
