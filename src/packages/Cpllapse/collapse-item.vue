@@ -1,12 +1,11 @@
 <template>
   <div class="y-collapse-item" :class = "{'is-open':open}">
-    <div class="title" @click = "open = !open">
+    <div class="title" @click = "toggle">
       {{title}}
     </div>
     <div class="content" v-if = "open">
       <slot></slot>
     </div>
-
   </div>
 </template>
 
@@ -22,6 +21,31 @@ export default {
   data(){
     return {
       open:false
+    }
+  },
+  inject:['eventBus','accordion'],
+  methods:{
+    toggle(){
+      if(this.open){
+        this.open = false;
+      }else{
+        this.open = true;
+        if(this.accordion){
+          this.eventBus.$emit('update:selected',this);
+        }
+      }
+    },
+    close(){
+      this.open = false;
+    }
+  },
+  mounted(){
+    if(this.accordion){
+      this.eventBus.$on('update:selected',(vm) => {
+        if(vm !== this){
+          this.close();
+        }
+      })
     }
   }
 }

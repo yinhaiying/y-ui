@@ -5,8 +5,26 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
-  name:'y-collapse'
+  name:'y-collapse',
+  data(){
+    return {
+      eventBus:new Vue()
+    }
+  },
+  props:{
+    accordion:{
+      type:Boolean,
+      default:false
+    }
+  },
+  provide(){
+    return {
+      eventBus:this.eventBus,
+      accordion:this.accordion
+    }
+  }
 }
 </script>
 
