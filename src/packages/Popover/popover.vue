@@ -131,10 +131,12 @@ export default {
     &::before{
       top:100%;
       border-top-color: #ebeef5;
+      border-bottom:none;
     }
     &::after{
       top:calc(100% - 1px);
       border-top-color: #fff;
+      border-bottom:none;
     }
   }
   &.popover-bottom{
@@ -142,10 +144,12 @@ export default {
     left:10px;
     &::before{
       bottom:100%;
+      border-top:none;
       border-bottom-color: #ebeef5;
     }
     &::after{
       bottom:calc(100% - 1px);
+      border-top:none;
       border-bottom-color: #fff;
     }
   }
@@ -156,12 +160,14 @@ export default {
       border-left-color: #ebeef5;
       top:50%;
       transform: translateY(-50%);
+      border-right:none;
     }
     &::after{
       left:calc(100% - 1px);
       border-left-color: #fff;
       top:50%;
       transform: translateY(-50%);
+      border-right:none;
     }
   }
   &.popover-right{
@@ -171,11 +177,13 @@ export default {
       border-right-color: #ebeef5;
       top:50%;
       transform: translateY(-50%);
+      border-left:none;
     }
     &::after{
       right:calc(100% - 1px);
       border-right-color: #fff;
       top:50%;
+      border-left:none;
       transform: translateY(-50%);
     }
   }
