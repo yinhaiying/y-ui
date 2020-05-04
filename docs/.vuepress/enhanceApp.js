@@ -15,6 +15,8 @@ import TabsContent from '../../src/packages/Tabs/tabs-content.vue'
 import TabsPane from '../../src/packages/Tabs/tabs-pane.vue'
 import Pagination from '../../src/packages/pagination/pagination.vue'
 import Popover from "../../src/packages/Popover/popover.vue"
+import Collpase from "../../src/packages/Collapse/collapse.vue"
+import CollpaseItem from "../../src/packages/Collapse/collapse-item.vue"
 Vue.component(Button.name,Button)
 Vue.component(ButtonGroup.name,ButtonGroup)
 Vue.component(Icon.name,Icon);
@@ -25,6 +27,8 @@ Vue.component(TabsContent.name,TabsContent);
 Vue.component(TabsPane.name,TabsPane);
 Vue.component(Pagination.name,Pagination);
 Vue.component(Popover.name,Popover);
+Vue.component(Collpase.name,Collpase);
+Vue.component(CollpaseItem.name,CollpaseItem);
 
 
 Vue.directive('highlight',function (el) {

@@ -19,7 +19,10 @@ export default {
       default:false
     },
     selected:{
-      type:Array
+      type:Array,
+      default(){
+        return [];
+      }
     }
   },
   provide(){

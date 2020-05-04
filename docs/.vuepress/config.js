@@ -18,7 +18,8 @@ module.exports = {
                   children: [
                       'button',
                       'message',
-                      'popover'
+                      'popover',
+                      'collapse'
                   ]
             },
             {
