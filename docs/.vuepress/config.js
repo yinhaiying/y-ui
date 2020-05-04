@@ -13,6 +13,13 @@ module.exports = {
       sidebar: {
           '/components/': [
             {
+                title:'入门',
+                collapsable: false,
+                children: [
+                    'start',
+                ]
+            },
+            {
                   title:'基础组件',
                   collapsable: false,
                   children: [
