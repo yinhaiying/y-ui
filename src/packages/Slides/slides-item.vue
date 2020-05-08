@@ -1,6 +1,6 @@
 <template>
   <transition name = "slide">
-    <div class = "y-slides-item" v-if = "visible" >
+    <div class = "y-slides-item" v-if = "visible" :class = "{'reverses':reverse}">
         <slot></slot>
     </div>
   </transition>
@@ -16,7 +16,8 @@ export default {
   },
   data(){
     return {
-      selected:null
+      selected:null,
+      reverse:false
     }
   },
   computed:{
@@ -33,9 +34,19 @@ export default {
 }
 .slide-enter{
   transform:translateX(100%);
+  opacity:0;
 }
 .slide-leave-to{
   transform:translateX(-100%);
+  opacity:0;
+}
+.slide-enter.reverses{
+  transform:translateX(-100%);
+  opacity:0;
+}
+.slide-leave-to.reverses{
+  transform:translateX(100%);
+  opacity:0;
 }
 .slide-enter-active,.slide-leave-active{
     transition:all 1s;

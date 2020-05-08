@@ -1,6 +1,6 @@
 <template>
   <div>
-    <y-slides :selected = "selected">
+    <y-slides :selected.sync = "selected">
       <y-slides-item name = "slides1">
         <div class = "box">1</div>
       </y-slides-item>
@@ -18,19 +18,9 @@ export default {
   name:'SlidesExample',
   data(){
     return {
-      selected:'slides1'
+      selected:'slides3'
     }
   },
-  created(){
-    let n = 1;
-    setInterval(() => {
-      n += 1;
-      if(n === 4){
-        n = 1;
-      }
-      this.selected = 'slides' + n;
-    },3000)
-  }
 }
 </script>
 
