@@ -12,7 +12,8 @@ import Pagination from './pagination/pagination.vue'
 import Popover from './Popover/popover.vue'
 import Collapse from './Collapse/collapse.vue'
 import CollapseItem from './Collapse/collapse-item.vue'
-
+import Slides from './Slides/slides.vue'
+import SlidesItem from './Slides/slides-item.vue'
 import Vue from 'vue'
 const components  = [
   Button,
@@ -26,7 +27,9 @@ const components  = [
   Pagination,
   Popover,
   Collapse,
-  CollapseItem
+  CollapseItem,
+  Slides,
+  SlidesItem
 ];
 const install = (Vue) => {
   // 把所有的组件设置程全局组件
