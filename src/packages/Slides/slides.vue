@@ -3,9 +3,9 @@
     <div class="y-slides-window" ref = "window">
       <slot></slot>
     </div>
-    <!-- <div class = "y-slides-dots">
-      <span @click = "select(index-1)" v-for = "index in childrenLength" :key = "index" :class = "{'active':selectedIndex == index - 1}">{{index}}</span>
-    </div> -->
+    <div class = "y-slides-dots">
+      <span @click = "onDotSelect(index-1)" v-for = "index in childrenLength" :key = "index" :class = "{'active':selectedIndex == index - 1}">{{index}}</span>
+    </div>
   </div>
 </template>
 <script>
@@ -27,7 +27,8 @@ export default {
   data(){
     return {
       childrenLength:0,
-      lastSelected:undefined
+      lastSelectedIndex:undefined,
+      reverse:true
     }
   },
   watch:{
@@ -46,39 +47,47 @@ export default {
     selectedIndex(){
       const names = this.$children.map((vm) => vm.name);
       return names.indexOf(this.getSelected());
+    },
+    names(){
+      return this.$children.map((vm) => vm.name) || [];
     }
   },
   methods:{
     updateChildren(){
-      // 如果没有selected，默认使用第一个。
       let selected = this.getSelected();
-      const names = this.$children.map((vm) => vm.name);
       this.$children.forEach((vm) => {
-        vm.selected = selected;
-        let newIndex = names.indexOf(selected);
-        let oldIndex = names.indexOf(vm.name);
-        vm.reverse = newIndex > oldIndex ? false :true
+        let newIndex = this.names.indexOf(selected);
+        let oldIndex = this.lastSelectedIndex;
+        vm.reverse = newIndex > oldIndex ? false :true;
+        this.$nextTick(() => {
+          vm.selected = selected;
+        })
       })
     },
     autoPlayHandle(){
-      const names = this.$children.map((vm) => vm.name);
-      let index = names.indexOf(this.getSelected());
       this.timer = setInterval(() => {
-        if(index === names.length){ index = 0};
-        //  this.$emit('update:selected',names[index+1]);
-        //  index++;
-        if(index === 0){index = names.length};
-        this.$emit('update:selected',names[index - 1]);
-        if(index === -1){index=names.length-1};
-        index--;
+        this.play();
       },this.duration)
     },
     getSelected(){
        return this.selected || this.$children[0].$props.name;
     },
-    select(index){
-      const names = this.$children.map((vm) => vm.name);
-      this.$emit('update:selected',names[index]);
+    play(){
+      let index = this.names.indexOf(this.getSelected());
+      if(!this.reverse){
+        if(index === this.names.length){ index = 0};
+        this.$emit('update:selected',this.names[index+1]);
+        index++;
+      }else{
+        if(index === 0){index = this.names.length};
+        this.$emit('update:selected',this.names[index - 1]);
+        index--;
+      }
+    },
+    onDotSelect(index){
+      this.lastSelectedIndex = this.names.indexOf(this.getSelected());
+      this.$emit('update:selected',this.names[index]);
+      clearInterval(this.timer);
     }
   },
   beforeDestroy(){
