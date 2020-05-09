@@ -37,3 +37,27 @@ if(index === this.activeIndex){
     z-index:-1; // 让要隐藏的元素不可见
 }
 ```
+
+## 反向运动的实现
+如果是需要反向运动，那么就给所有的子元素添加上一个reverse类。通过这个类来控制他们显示和隐藏的位置。
+```javascript
+    updateChildren(){
+      this.$children.forEach((vm,index) => {
+        vm.reverse = this.reverse;
+        if(index === this.activeIndex){
+          vm.visible = true;
+        }else{
+          vm.visible = false;
+        }
+      })
+    },
+```
+反向运动，从左向右滑动，因此显示时应该是处于-100%的位置，离开时处于100%的位置。
+```css
+.slide-enter.reverse{
+    transform:translate(-100%);
+}
+.slide-leave-to.reverse{
+    transform:translateX(100%);
+}
+```

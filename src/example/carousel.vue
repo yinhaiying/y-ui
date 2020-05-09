@@ -1,6 +1,6 @@
 <template>
   <div class="carouselExample">
-    <y-carousel :initialIndex = "initialIndex">
+    <y-carousel :initialIndex = "initialIndex" :auto-play = "autoPlay" :loop = "loop" :reverse = "reverse">
         <y-carousel-item >
             <div style = "background:rgba(255,67,244)" class="wrapper">0</div>
         </y-carousel-item>
@@ -14,9 +14,6 @@
             <div class="wrapper" style = "background:yellow">3</div>
         </y-carousel-item>
     </y-carousel>
-    <div style = "margin-top:50px;">
-      <button @click = "click" >点击</button>
-    </div>
   </div>
 </template>
 
@@ -26,18 +23,12 @@ export default {
   props: {},
   data() {
     return {
-      initialIndex:0
+      initialIndex:0,
+      autoPlay:true,
+      loop:true,
+      reverse:true
     };
-  },
-  methods:{
-    click(){
-      this.initialIndex++;
-      if(this.initialIndex > 3){
-        this.initialIndex = 0;
-      }
-      console.log(this.initialIndex)
-    }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

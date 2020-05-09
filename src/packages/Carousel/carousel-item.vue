@@ -1,6 +1,6 @@
 <template>
     <transition name = "slide">
-        <div class="y-carousel-item" v-if = "visible">
+        <div class="y-carousel-item" v-if = "visible" :class = "{reverse:reverse}">
             <slot></slot>
         </div>
     </transition>
@@ -12,15 +12,13 @@ export default {
   props: {},
   data() {
     return {
-        visible:true
+        visible:true,
+        reverse:false
     };
   },
 };
 </script>
 <style lang="scss" scoped>
-.y-carousel-item{
-   
-}
 .slide-enter-active,.slide-leave-active{
     transition:all 1s;
 }
@@ -29,6 +27,13 @@ export default {
 }
 .slide-leave-to{
     transform:translateX(-100%);
+}
+
+.slide-enter.reverse{
+    transform:translate(-100%);
+}
+.slide-leave-to.reverse{
+    transform:translateX(100%);
 }
 .slide-leave-active{
     position:absolute;
