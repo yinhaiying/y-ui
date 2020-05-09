@@ -3,6 +3,9 @@
     <div class="y-slides-window" ref = "window">
       <slot></slot>
     </div>
+    <!-- <div class = "y-slides-dots">
+      <span @click = "select(index-1)" v-for = "index in childrenLength" :key = "index" :class = "{'active':selectedIndex == index - 1}">{{index}}</span>
+    </div> -->
   </div>
 </template>
 <script>
@@ -15,6 +18,16 @@ export default {
     autoPlay:{
       type:Boolean,
       default:true
+    },
+    duration:{
+      type:Number,
+      default:3000
+    }
+  },
+  data(){
+    return {
+      childrenLength:0,
+      lastSelected:undefined
     }
   },
   watch:{
@@ -26,11 +39,15 @@ export default {
     this.updateChildren();
     if(this.autoPlay){
       this.autoPlayHandle();
+    };
+    this.childrenLength = this.$children.length;
+  },
+  computed:{
+    selectedIndex(){
+      const names = this.$children.map((vm) => vm.name);
+      return names.indexOf(this.getSelected());
     }
   },
-  // updated(){
-  //   this.updateChildren();
-  // },
   methods:{
     updateChildren(){
       // 如果没有selected，默认使用第一个。
@@ -54,10 +71,14 @@ export default {
         this.$emit('update:selected',names[index - 1]);
         if(index === -1){index=names.length-1};
         index--;
-      },3000)
+      },this.duration)
     },
     getSelected(){
        return this.selected || this.$children[0].$props.name;
+    },
+    select(index){
+      const names = this.$children.map((vm) => vm.name);
+      this.$emit('update:selected',names[index]);
     }
   },
   beforeDestroy(){
@@ -68,11 +89,25 @@ export default {
 
 <style lang="scss" scoped>
 .y-slides{
-  display:inline-block;
   border:1px solid green;
+  display:inline-block;
   &-window{
     position:relative;
     overflow:hidden;
+  }
+  &-dots{
+    >span{
+      cursor: pointer;
+      width:20px;
+      height:20px;
+      display:inline-block;
+      text-align: center;
+      border-radius: 50% 50%;
+      &.active{
+        background:red;
+      }
+    }
+
   }
 }
 </style>
