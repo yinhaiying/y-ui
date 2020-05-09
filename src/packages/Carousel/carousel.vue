@@ -1,7 +1,10 @@
 <template>
   <div class="y-carousel">
-      <div class="container">
+      <div class="y-carousel-container">
         <slot></slot>
+      </div>
+      <div class="y-carousel-dot">
+        <span v-for = "n in childrenLength" :key = "n" @click = "onIndicatorSelect(n-1)">{{n-1}}</span>
       </div>
   </div>
 </template>
@@ -29,7 +32,9 @@ export default {
   },
   data() {
     return {
-      activeIndex:0
+      activeIndex:0,
+      childrenLength:0,
+      lastIndex:undefined
     };
   },
   watch:{
@@ -40,18 +45,23 @@ export default {
   },
   mounted(){
     this.activeIndex = this.initialIndex;
-    this.updateChildren();
+    this.childrenLength = this.$children.length;
+    this.updateChildren(this.reverse);
     this.autoPlayHandle();
   },
   methods:{
-    updateChildren(){
+    updateChildren(reverse){
       this.$children.forEach((vm,index) => {
-        vm.reverse = this.reverse;
-        if(index === this.activeIndex){
-          vm.visible = true;
-        }else{
-          vm.visible = false;
-        }
+        vm.reverse = reverse;
+        // 确保每个元素的reverse渲染完成
+        this.$nextTick(() => {
+          if(index === this.activeIndex){
+            vm.visible = true;
+          }else{
+            vm.visible = false;
+          }
+        })
+
       })
     },
     play(){
@@ -69,9 +79,26 @@ export default {
         this.updateChildren();
     },
     autoPlayHandle(){
-      this.timer = setInterval(() => {
-       this.play();
-      },this.interval)
+      if(this.autoPlay){
+        this.timer = setInterval(() => {
+        this.play();
+        },this.interval)
+      }
+
+    },
+    onIndicatorSelect(selectedIndex){
+      this.lastIndex = this.activeIndex;
+      this.activeIndex = selectedIndex;
+      let reverse = false;
+      // 这里需要根据之前的index和新的index判断是什么方向运动
+      if(selectedIndex > this.lastIndex){
+        reverse = false;
+      }else{
+        reverse = true;
+      }
+      console.log('当前是反向：' + this.reverse);
+      this.updateChildren(reverse);
+      
     },
     clear(){
       clearInterval(this.timer);
@@ -87,11 +114,29 @@ export default {
 .y-carousel{
   // border:1px solid black;
   display:inline-block;
-  .container{
+  position:relative;
+  .y-carousel-container{
     position:relative;
     width:100%;
     height:100%;
     overflow:hidden;
+  }
+  .y-carousel-dot{
+    position:absolute;
+    text-align:center;
+    left:50%;
+    bottom:5px;
+    transform:translateX(-50%);
+    width:100%;
+    span{
+      display:inline-block;
+      box-sizing: border-box;
+      width:30px;
+      height:10px;
+      background:#c0c4cc;
+      margin-right: 10px;
+      cursor:pointer;
+    }
   }
 }
 </style>
