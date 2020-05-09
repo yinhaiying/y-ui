@@ -14,6 +14,8 @@ import Collapse from './Collapse/collapse.vue'
 import CollapseItem from './Collapse/collapse-item.vue'
 import Slides from './Slides/slides.vue'
 import SlidesItem from './Slides/slides-item.vue'
+import Carousel from './Carousel/carousel.vue'
+import CarouselItem from './Carousel/carousel-item.vue'
 import Vue from 'vue'
 const components  = [
   Button,
@@ -29,7 +31,9 @@ const components  = [
   Collapse,
   CollapseItem,
   Slides,
-  SlidesItem
+  SlidesItem,
+  Carousel,
+  CarouselItem
 ];
 const install = (Vue) => {
   // 把所有的组件设置程全局组件

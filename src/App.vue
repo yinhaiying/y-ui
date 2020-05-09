@@ -7,7 +7,8 @@
     <!-- <pagination-example></pagination-example> -->
     <!-- <popover-example></popover-example> -->
     <!-- <collapse-example></collapse-example> -->
-    <slides-example></slides-example>
+    <!-- <slides-example></slides-example> -->
+    <carousel-example></carousel-example>
   </div>
 </template>
 <script>
@@ -19,6 +20,7 @@ import PaginationExample from './example/pagination'
 import PopoverExample from './example/popover'
 import CollapseExample from './example/collapse'
 import SlidesExample from './example/slides'
+import CarouselExample from './example/carousel'
 export default {
   name: 'App',
   components: {
@@ -29,7 +31,8 @@ export default {
     PaginationExample,
     PopoverExample,
     CollapseExample,
-    SlidesExample
+    SlidesExample,
+    CarouselExample
   }
 }
 </script>
