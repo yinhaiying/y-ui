@@ -2,16 +2,16 @@
   <div class="carouselExample">
     <y-carousel :initialIndex = "initialIndex" :auto-play = "autoPlay" :reverse = "reverse">
         <y-carousel-item >
-            <div style = "background:rgba(255,67,244)" class="wrapper">0</div>
+            <div style = "background:#A5B3C7" class="wrapper">0</div>
         </y-carousel-item>
         <y-carousel-item>
-            <div class="wrapper" style = "background:pink;">1</div>
+            <div class="wrapper" style = "background:#A5B3C7">1</div>
         </y-carousel-item>
         <y-carousel-item>
-            <div class="wrapper" style = "background:green">2</div>
+            <div class="wrapper" style = "background:#A5B3C7">2</div>
         </y-carousel-item>
         <y-carousel-item>
-            <div class="wrapper" style = "background:yellow">3</div>
+            <div class="wrapper" style = "background:#A5B3C7">3</div>
         </y-carousel-item>
     </y-carousel>
   </div>

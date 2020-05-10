@@ -4,7 +4,11 @@
         <slot></slot>
       </div>
       <div class="y-carousel-dot">
-        <span :class = "{'active':activeIndex === n -1}" v-for = "n in childrens.length" :key = "n" @click = "onIndicatorSelect(n-1)">{{n-1}}</span>
+        <span :class = "{'active':activeIndex === n -1}" v-for = "n in childrens.length" :key = "n" @click = "onSelect(n-1)">{{n-1}}</span>
+      </div>
+      <div class="y-carousel-arrow">
+        <span @click = "onSelect(activeIndex-1)"><y-icon name = "big_arrow-left"></y-icon></span>
+        <span @click = "onSelect(activeIndex+1)"><y-icon name = "big_arrow-right"></y-icon></span>
       </div>
   </div>
 </template>
@@ -41,7 +45,7 @@ export default {
   watch:{
     initialIndex(newIndex){
       this.activeIndex = newIndex;
-      this.updateChildren();
+      this.updateChildren(this.reverse);
     }
   },
   mounted(){
@@ -94,12 +98,21 @@ export default {
         },this.interval)
       }
     },
-    onIndicatorSelect(selectedIndex){
+    onSelect(selectedIndex){
       this.lastIndex = this.activeIndex;
-      this.activeIndex = selectedIndex;
       let reverse = false;
       // 这里需要根据之前的index和新的index判断是什么方向运动
-      reverse = selectedIndex > this.lastIndex ? false :true
+      reverse = selectedIndex > this.lastIndex ? false :true;
+      this.activeIndex = selectedIndex;
+      if(reverse){
+        if(this.activeIndex === -1){
+          this.activeIndex = this.childrens.length-1;
+        }
+      }else{
+        if(this.activeIndex === this.childrens.length){
+          this.activeIndex = 0;
+        }
+      }
       this.updateChildren(reverse);
     },
     clear(){
@@ -151,5 +164,41 @@ export default {
       }
     }
   }
+  &:hover{
+    .y-carousel-arrow{
+      display:inline-flex;
+      width:100%;
+      position:absolute;
+      height:20px;
+      top:50%;
+      transform:translateY(-50%);
+      span{
+        position:absolute;
+        font-size:20px;
+        width:28px;
+        height:28px;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        border-radius:50%;
+        color:#fff;
+        background:#96A4B1;
+        &:hover{
+          background:#96A4B8;
+          cursor: pointer;
+        }
+        &:first-child{
+          left:10px;
+        }
+        &:last-child{
+          right:10px;
+        }
+      }
+    }
+  }
+  .y-carousel-arrow{
+    display: none;
+  }
+
 }
 </style>
