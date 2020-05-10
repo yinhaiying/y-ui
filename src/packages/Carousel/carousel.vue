@@ -1,5 +1,5 @@
 <template>
-  <div class="y-carousel">
+  <div class="y-carousel" @mouseenter="onMouseEnter" @mouseleave="onMouseleave">
       <div class="y-carousel-container">
         <slot></slot>
       </div>
@@ -34,7 +34,8 @@ export default {
     return {
       activeIndex:0,
       childrenLength:0,
-      lastIndex:undefined
+      lastIndex:undefined,
+      timer:null
     };
   },
   watch:{
@@ -64,6 +65,13 @@ export default {
 
       })
     },
+    onMouseEnter(){
+      this.clear();
+    },
+    onMouseleave(){
+      if(this.timer){ return;}
+      this.autoPlayHandle();
+    },
     play(){
         if(!this.reverse){
           this.activeIndex += 1;
@@ -84,24 +92,18 @@ export default {
         this.play();
         },this.interval)
       }
-
     },
     onIndicatorSelect(selectedIndex){
       this.lastIndex = this.activeIndex;
       this.activeIndex = selectedIndex;
       let reverse = false;
       // 这里需要根据之前的index和新的index判断是什么方向运动
-      if(selectedIndex > this.lastIndex){
-        reverse = false;
-      }else{
-        reverse = true;
-      }
-      console.log('当前是反向：' + this.reverse);
+      reverse = selectedIndex > this.lastIndex ? false :true
       this.updateChildren(reverse);
-      
     },
     clear(){
-      clearInterval(this.timer);
+      window.clearInterval(this.timer);
+      this.timer = null;
     }
   },
   beforeDestroy(){
