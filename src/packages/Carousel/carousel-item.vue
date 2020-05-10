@@ -19,6 +19,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.y-carousel-item{
+  width:100%;
+}
 .slide-enter-active,.slide-leave-active{
     transition:all 1s;
 }
@@ -39,6 +42,6 @@ export default {
     position:absolute;
     left:0;
     top:0;
-    z-index:-1;
+    // z-index:-1;
 }
 </style>

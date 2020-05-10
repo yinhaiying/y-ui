@@ -45,7 +45,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 160px;
-  margin-left:300px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:100px;
+  width:100%;
 }
 </style>

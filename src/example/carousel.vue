@@ -5,7 +5,7 @@
             <div style = "background:rgba(255,67,244)" class="wrapper">0</div>
         </y-carousel-item>
         <y-carousel-item>
-            <div class="wrapper" style = "background:pink">1</div>
+            <div class="wrapper" style = "background:pink;">1</div>
         </y-carousel-item>
         <y-carousel-item>
             <div class="wrapper" style = "background:green">2</div>
@@ -31,9 +31,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.carouselExample{
+  width:100%;
+}
 .wrapper{
-    width:300px;
+    // width:100%;
     height:200px;
     border:1px solid red;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:38px;
+    font-weight:bold;
 }
 </style>

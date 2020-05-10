@@ -4,7 +4,7 @@
         <slot></slot>
       </div>
       <div class="y-carousel-dot">
-        <span v-for = "n in childrenLength" :key = "n" @click = "onIndicatorSelect(n-1)">{{n-1}}</span>
+        <span :class = "{'active':activeIndex === n -1}" v-for = "n in childrenLength" :key = "n" @click = "onIndicatorSelect(n-1)">{{n-1}}</span>
       </div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     },
     interval:{
       type:Number,
-      default:2000
+      default:3000
     },
     reverse:{
       type:Boolean,
@@ -115,7 +115,8 @@ export default {
 <style lang="scss" scoped>
 .y-carousel{
   // border:1px solid black;
-  display:inline-block;
+  // display:inline-block;
+  width:100%;
   position:relative;
   .y-carousel-container{
     position:relative;
@@ -131,13 +132,26 @@ export default {
     transform:translateX(-50%);
     width:100%;
     span{
-      display:inline-block;
+      display:inline-flex;
       box-sizing: border-box;
-      width:30px;
-      height:10px;
-      background:#c0c4cc;
-      margin-right: 10px;
-      cursor:pointer;
+      width:1.2em;
+      height:1.2em;
+      border-radius:50%;
+      background:#ddd;
+      margin-right: 0.2em;
+      justify-content: center;
+      align-items:center;
+      &:hover{
+        cursor:pointer;
+      }
+      &.active{
+        background:rgba(0,0,0,0.45);
+        color:#fff;
+        &:hover{
+          cursor:default;
+        }
+
+      }
     }
   }
 }
