@@ -18,6 +18,8 @@ import Pagination from '../../src/packages/pagination/pagination.vue'
 import Popover from "../../src/packages/Popover/popover.vue"
 import Collpase from "../../src/packages/Collapse/collapse.vue"
 import CollpaseItem from "../../src/packages/Collapse/collapse-item.vue"
+import Carousel from "../../src/packages/Carousel/carousel"
+import CarouselItem from "../../src/packages/Carousel/carousel-item"
 Vue.component(Button.name,Button)
 Vue.component(ButtonGroup.name,ButtonGroup)
 Vue.component(Icon.name,Icon);
@@ -30,6 +32,8 @@ Vue.component(Pagination.name,Pagination);
 Vue.component(Popover.name,Popover);
 Vue.component(Collpase.name,Collpase);
 Vue.component(CollpaseItem.name,CollpaseItem);
+Vue.component(Carousel.name,Carousel)
+Vue.component(CarouselItem.name,CarouselItem)
 
 
 Vue.directive('highlight',function (el) {

@@ -26,7 +26,8 @@ module.exports = {
                       'button',
                       'message',
                       'popover',
-                      'collapse'
+                      'collapse',
+                      'carousel'
                   ]
             },
             {

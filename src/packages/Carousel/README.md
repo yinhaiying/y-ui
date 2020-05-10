@@ -61,3 +61,8 @@ if(index === this.activeIndex){
     transform:translateX(100%);
 }
 ```
+
+TODO:
+1. 点击指示器时从1直接切换到3，不会经过2.
+2. 关于宽度100%的设置有问题。
+

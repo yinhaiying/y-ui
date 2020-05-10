@@ -4,7 +4,7 @@
         <slot></slot>
       </div>
       <div class="y-carousel-dot">
-        <span :class = "{'active':activeIndex === n -1}" v-for = "n in childrens.length" :key = "n" @click = "onSelect(n-1)">{{n-1}}</span>
+        <span :class = "{'active':activeIndex === n -1}" v-for = "n in childrens.length" :key = "n" @click = "onSelect(n-1)"></span>
       </div>
       <div class="y-carousel-arrow">
         <span @click = "onSelect(activeIndex-1)"><y-icon name = "big_arrow-left"></y-icon></span>
@@ -129,10 +129,11 @@ export default {
 <style lang="scss" scoped>
 .y-carousel{
   position:relative;
+  // width:100%;
   .y-carousel-container{
     position:relative;
-    width:100%;
-    height:100%;
+    // width:100%;
+    // height:100%;
     overflow:hidden;
   }
   .y-carousel-dot{
