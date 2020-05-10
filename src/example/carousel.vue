@@ -32,10 +32,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .carouselExample{
-  width:100%;
+  // width:100%;
 }
 .wrapper{
     // width:100%;
+    width:300px;
     height:200px;
     border:1px solid red;
     display:flex;

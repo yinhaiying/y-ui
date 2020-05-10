@@ -4,7 +4,7 @@
         <slot></slot>
       </div>
       <div class="y-carousel-dot">
-        <span :class = "{'active':activeIndex === n -1}" v-for = "n in childrenLength" :key = "n" @click = "onIndicatorSelect(n-1)">{{n-1}}</span>
+        <span :class = "{'active':activeIndex === n -1}" v-for = "n in childrens.length" :key = "n" @click = "onIndicatorSelect(n-1)">{{n-1}}</span>
       </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       activeIndex:0,
-      childrenLength:0,
+      childrens:[],
       lastIndex:undefined,
       timer:null
     };
@@ -46,13 +46,15 @@ export default {
   },
   mounted(){
     this.activeIndex = this.initialIndex;
-    this.childrenLength = this.$children.length;
+    this.childrens = this.$children.filter((item) => {
+      return item.hasOwnProperty('reverse');
+    });
     this.updateChildren(this.reverse);
     this.autoPlayHandle();
   },
   methods:{
     updateChildren(reverse){
-      this.$children.forEach((vm,index) => {
+        this.childrens.forEach((vm,index) => {
         vm.reverse = reverse;
         // 确保每个元素的reverse渲染完成
         this.$nextTick(() => {
@@ -62,7 +64,6 @@ export default {
             vm.visible = false;
           }
         })
-
       })
     },
     onMouseEnter(){
@@ -75,16 +76,16 @@ export default {
     play(){
         if(!this.reverse){
           this.activeIndex += 1;
-          if(this.activeIndex === this.$children.length){
+          if(this.activeIndex === this.childrens.length){
               this.activeIndex = 0;
           }
         }else{
           this.activeIndex -= 1;
           if(this.activeIndex === -1){
-            this.activeIndex = this.$children.length-1;
+            this.activeIndex = this.childrens.length-1;
           }
         }
-        this.updateChildren();
+        this.updateChildren(this.reverse);
     },
     autoPlayHandle(){
       if(this.autoPlay){
@@ -114,9 +115,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .y-carousel{
-  // border:1px solid black;
-  // display:inline-block;
-  width:100%;
   position:relative;
   .y-carousel-container{
     position:relative;
@@ -130,7 +128,6 @@ export default {
     left:50%;
     bottom:5px;
     transform:translateX(-50%);
-    width:100%;
     span{
       display:inline-flex;
       box-sizing: border-box;

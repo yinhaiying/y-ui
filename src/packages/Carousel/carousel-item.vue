@@ -20,7 +20,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .y-carousel-item{
-  width:100%;
+  display:inline-flex;
 }
 .slide-enter-active,.slide-leave-active{
     transition:all 1s;
@@ -28,6 +28,7 @@ export default {
 .slide-enter{
     transform:translateX(100%);
 }
+
 .slide-leave-to{
     transform:translateX(-100%);
 }
