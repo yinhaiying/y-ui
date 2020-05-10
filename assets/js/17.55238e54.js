@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[17],{690:function(e,n,t){"use strict";t.r(n);var s={name:"MessageExample",methods:{open:function(){this.$message("这是一条消息提示")}}},o=t(1),i=Object(o.a)(s,(function(){var e=this.$createElement;return(this._self._c||e)("y-button",{on:{click:this.open}},[this._v("打开消息提示")])}),[],!1,null,null,null);n.default=i.exports}}]);
