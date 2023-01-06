@@ -19,7 +19,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-unit-mocha": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
+    "@vue/cli-service": "~5.0.8",
     "@vue/test-utils": "1.0.0-beta.31",
     "chai": "^4.2.0",
     "jasmine-core": "^3.5.0",
